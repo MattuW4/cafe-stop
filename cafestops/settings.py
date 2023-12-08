@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-mattuw4-cafe-stop-hnz25o9vte.us2.codeanyapp.com', 'cafe-stops-app.herokuapp.com', 'localhost',]
+    '8000-mattuw4-cafe-stop-hnz25o9vte.us2.codeanyapp.com', 'cafe-stops-app.herokuapp.com', 'localhost', 'cafe-stops-app-1a89f942fe7e.herokuapp.com']
 
 
 # Application definition
