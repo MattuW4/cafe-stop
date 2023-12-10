@@ -9,6 +9,6 @@ class PostList(generic.ListView):
     and ordered by descending date to display 6 blog posts per page.
     """
     model = Post
-    queryset = Post.objects.all(status=1).order_by('-created_on')
-    template_name = "index.html"
+    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    template_name = "browse.html"
     paginate_by = 6
