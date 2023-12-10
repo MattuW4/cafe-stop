@@ -41,9 +41,26 @@
   </head>
   <body>
     <!-- Navigation Menu -->
-    <nav></nav>
+    <nav>
+      <div class="container">
+        <a href="#">Cafe Stop</a>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Browse</a>
+          </li>
+          <li>
+            <a href="#">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <!-- Main body-->
-    <main></main>
+    <main>{% block content%} {% endblock %}</main>
     <!-- Footer -->
     <footer>
       <div class="container">
