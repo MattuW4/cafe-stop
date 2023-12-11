@@ -1,2 +1,31 @@
 {% extends 'base.html' %} {% block content %}
+
+<!-- Hero image and call to arms -->
+
+<section id="hero" class="row mb-3 py-3 border rounded">
+  <div
+    class="col-md-6 d-flex flex-column justify-content-evenly order-1 order-md-0"
+  >
+    <div class="py-4 py-md-0 w-100">
+      <h1 class="pb-0 pb-lg-1 text-center">Cafe stops</h1>
+      <p class="lead text-center">
+        This is a site to share your favourite cafe stops from your bike rides.
+        Whether that be for a cuppa, second breakfast or on those days when you
+        just need a respite from the elements. Discover other cafes you didn't
+        know about to plan a ride to or, pick explore some new stops on old
+        routes!
+      </p>
+    </div>
+    <div class="py-4 py-md-0 w-100">
+      <p class="lead text-center">
+        {% if user.is_authenticated %}
+        <a href="{% url 'browse' %}">Check out the cafe directory here...</a>
+        {% else %}
+        <a href="#">Sign up for a free account now!</a>
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
