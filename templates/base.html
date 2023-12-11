@@ -48,7 +48,10 @@
     <!-- Navigation Menu -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" aria-label="Link for home page" href="#"
+        <a
+          class="navbar-brand"
+          aria-label="Link for home page"
+          href="{% url 'browse' %}"
           >Cafe Stop</a
         >
         <button
@@ -68,7 +71,10 @@
         >
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="nav-content">
             <li class="nav-item">
-              <a class="nav-link" aria-label="Link for home page" href="#"
+              <a
+                class="nav-link"
+                aria-label="Link for home page"
+                href="{% url 'home' %}"
                 >Home</a
               >
             </li>
