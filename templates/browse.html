@@ -14,11 +14,13 @@
                 {% if "placeholder" in post.featured_image.url %}
                 <img
                   class="card-img-top"
+                  aria-label="Placeholder image for post"
                   src="https://res.cloudinary.com/deoxxigyw/image/upload/c_thumb,w_200,g_face/v1702233159/Favicon_k3purp.png"
                 />
                 {% else %}
                 <img
                   class="card-img-top"
+                  aria-label="Featured image for post"
                   src=" {{ post.featured_image.url }}"
                 />
                 {% endif %}
@@ -42,6 +44,7 @@
       <div class="row">{% endif %} {% endfor %}</div>
     </div>
   </div>
+  <!-- Page pagination-->
   {% if is_paginated %}
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
