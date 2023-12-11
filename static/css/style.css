@@ -12,6 +12,23 @@ body {
 }
 
 /* Nav bar styling */
-.nav-link {
+.nav-item {
     margin-right: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1.4em;
+}
+
+.n.container-fluid {
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    padding: 0;
 }
