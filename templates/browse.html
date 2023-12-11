@@ -5,10 +5,10 @@
   <div class="row">
     <!-- Cafe catalogue column -->
     <div class="col-12 mt-3 left">
-      <div class="row">
+      <div class="row align-items-center">
         {% for post in post_list %}
         <div class="col-md-4">
-          <div class="card mb-4" style="width: 18rem">
+          <div class="card mb-3" style="width: 18rem">
             <div class="card-body">
               <div class="image-container">
                 {% if "placeholder" in post.featured_image.url %}

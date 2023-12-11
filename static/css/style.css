@@ -10,6 +10,7 @@
 body {
     font-family: 'Raleway', sans-serif;
     padding-top: 4.063rem;
+    padding-bottom: 4.063rem;
 }
 
 /* Nav bar styling */
@@ -32,4 +33,24 @@ body {
     align-items: center;
     font-size: 2em;
     padding: 0;
+}
+
+/* Footer */
+
+footer {
+    padding-top: 7.125rem;
+    text-align: center;
+    width: 100%;
+
+}
+
+.footer-media-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-media-link:hover {
+    border-bottom: 5px black solid;
+    color: white;
 }
