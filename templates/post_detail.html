@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% block content %}
+
+<div>
+  <div class="container">
+    <div class="row-g-8">
+      <div class="col-6">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.author }} | {{ post.created_on }}</p>
+      </div>
+      <div class="d-none d-md block col-md-6">
+        {% if "placeholder" in post.featured_image.url %}
+        <img
+          aria-label="Placeholder image for post"
+          src="https://res.cloudinary.com/deoxxigyw/image/upload/c_thumb,w_200,g_face/v1702233159/Favicon_k3purp.png"
+        />
+        {% else %}
+        <img
+          aria-label="Featured image for post"
+          src=" {{ post.featured_image.url }}"
+        />
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col card mb-4 mt-3 left top">
+      <div class="card-body">
+        <p class="card-text">{{ post.content | safe }}</p>
+        <div class="row">
+          <div class="col-1">
+            <strong class="text-secondary"
+              ><i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}
+            </strong>
+            <div class="col-1">
+              {% with comments.count as total_comments %}
+              <strong class="text-secondary"
+                ><i class="far fa-comments"></i> {{ total_comments }}</strong
+              >
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="col">
+    <hr>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-8 card mb-4  mt-3 ">
+        <h3>Comments:</h3>
+        <div class="card-body">            
+            {% for comment in comments %}
+            <div class="comments" style="padding: 10px;">
+                <p class="font-weight-bold">                   
+                    {{ comment.name }}
+                    <span class=" text-muted font-weight-normal">                        
+                        {{ comment.created_on }}
+                    </span> wrote:
+                </p>                
+                {{ comment.body | linebreaks }}
+            </div>            
+            {% endfor %}
+        </div>
+    </div>   
+</div>
+
+
+{% endblock content %}
