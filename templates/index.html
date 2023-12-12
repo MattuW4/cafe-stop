@@ -22,7 +22,11 @@
         {% if user.is_authenticated %}
         <a href="{% url 'browse' %}">Check out the cafe directory here...</a>
         {% else %}
-        <a href="#">Sign up for a free account now!</a>
+        <a
+          aria-label="Link to register an account"
+          href="{% url 'account_signup' %}"
+          >Sign up for a free account now!</a
+        >
         {% endif %}
       </p>
     </div>
