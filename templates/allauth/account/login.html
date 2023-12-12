@@ -14,7 +14,7 @@
 
             <p>{% blocktrans %}Welcome back to Cafe Stops: your one stop shop for cycling cafes <i class="fa-solid fa-bicycle"></i></p> 
             <p>Want to leave a comment or like a post as part of this cycling community? You can join the discussion by logging in
-            below or if you have not yet created an account then <a class="link" href="{{ signup_url }}">join us today!</a></p> 
+            below or if you have not yet created an account then <a class="link" aria-label="Link to sign up page" href="{{ signup_url }}">join us today!</a></p> 
             {% endblocktrans %}
         </div>
     </div>
@@ -26,7 +26,7 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
-                <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
+                <button class="btn btn-signup right" type="submit" aria-label="Submit button to sign in">{% trans "Sign In" %}</button>
             </form>
         </div>
     </div>
