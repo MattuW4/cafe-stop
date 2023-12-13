@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from csapp.models import Post, Comment, Category
+from .forms import CommentForm
 
 
 class Index(generic.ListView):
@@ -35,6 +36,7 @@ class PostDetail(View):
             {
                 "post": post,
                 "comments": comments,
-                "liked": liked
+                "liked": liked,
+                "comment_form": CommentForm(),
             }
         )
