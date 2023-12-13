@@ -49,27 +49,27 @@
     </div>
   </div>
 </div>
-<div class="row">
+<!-- <div class="row">
 <div class="col">
     <hr>
 </div>
-</div>
+</div> WHAT IS THIS FOR? -->
 <div class="row">
     <div class="col-md-8 card mb-4  mt-3 ">
         <h3>Comments:</h3>
         <div class="card-body">
             {% if commented %}
             <div class="alert alert-success" role="alert">
-                Your comment is awaiting approval
+                Your comment is awaiting approval! <i class="fa-solid fa-stopwatch"></i>
             </div>
             {% else %}
             {% if user.is_authenticated %}            
-            <h3>Leave a comment:</h3>
+            <h3>Share your thoughts:</h3>
             <p>Posting as: {{ user.username }}</p>
             <form method="post" style="margin-top: 1.3em;">
                 {{ comment_form | crispy }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                <button type="submit" class="btn btn-signup btn-lg">Submit comment</button>
             </form>
             {% endif %}
             {% endif %}
