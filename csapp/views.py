@@ -12,7 +12,7 @@ class Index(generic.ListView):
 
 class PostList(generic.ListView):
     """
-    View for displying all blog posts on blog page, filtering by approved 
+    View for displying all  posts on browse page, filtering by approved 
     and ordered by descending date to display 6 blog posts per page.
     """
     model = Post
@@ -22,6 +22,11 @@ class PostList(generic.ListView):
 
 
 class PostDetail(View):
+    """
+    View to post/get post detail to render on browse page,
+    filtering posts by approved and ordered by most recent 
+    date/time. 
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -41,7 +46,11 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             }
         )
-
+    """
+    View for post/get comment detail to render on browse page,
+    filtering comments by approved and ordered by most recent 
+    date/time. 
+    """
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
