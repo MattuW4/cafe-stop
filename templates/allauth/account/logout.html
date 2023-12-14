@@ -22,8 +22,10 @@
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 <button class="btn btn-signup right" type="submit" aria-label="Button to log out">{% trans 'Sign Out' %}</button>
+                <p>or click <a class="nav-link" aria-label="Link for home page" href="{% url 'home' %}">here</a> to stay with us and return to the Home Page.</p>
             </form>
         </div>
     </div>
+    
 </div>
 {% endblock %}
