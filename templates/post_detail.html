@@ -1,90 +1,94 @@
-{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
+{% extends 'base.html' %} 
+{% block content %} 
+{% load crispy_forms_tags %}
 
-<div>
-  <div class="container">
-    <div class="row-g-8">
-      <div class="col-6">
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.author }} | {{ post.created_on }}</p>
-      </div>
-      <div class="d-none d-md block col-md-6">
-        {% if "placeholder" in post.featured_image.url %}
-        <img
-          aria-label="Placeholder image for post"
-          src="https://res.cloudinary.com/deoxxigyw/image/upload/c_thumb,w_200,g_face/v1702233159/Favicon_k3purp.png"
-        />
-        {% else %}
-        <img
-          aria-label="Featured image for post"
-          src=" {{ post.featured_image.url }}"
-        />
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col card mb-4 mt-3 left top">
-      <div class="card-body">
-        <p class="card-text">Cafe overview: {{ post.content | safe }}</p>
-        <p class="card-text">Website: {{ post.website | safe }}</p>
-        <div class="row">
-          <div class="col-1">
-            <p>Location: {{ post.location | safe }}</p>
-            <p>Opening time: {{ post.opening_time | safe }}</p>
-            <p>Closing time: {{ post.closing_time | safe }}</p>
-            <strong class="text-secondary"><i class="fa-solid fa-heart">            
-            </i> {{ post.number_of_likes }}</strong>
-            <div class="col-1">
-              {% with comments.count as total_comments %}
-              <strong class="text-secondary"
-                ><i class="far fa-comments"></i> {{ total_comments }}</strong
-              >
-              {% endwith %}
+<!-- Post details section -->
+<section>
+    <!-- Post details -->
+    <div>
+        <div class="container">
+            <div class="row-g-8">
+                <div class="col-6">
+                    <h1> <strong>{{ post.title }}</strong></h1>
+                    <p>Posted by: {{ post.author }} | {{ post.created_on }}</p>
+                    <p>Location: {{ post.location | safe }}</p>
+                    <p>Opens: {{ post.opening_time | safe }}</p>
+                    <p>Closes: {{ post.closing_time | safe }}</p>
+                    <p class="card-text">Website: {{ post.website | safe }}</p>
+                    <strong class="text-secondary"><i class="fa-solid fa-heart">
+                    </i> {{ post.number_of_likes }}</strong>
+                </div>
+                <div class="container">
+                    <div class="row-g-8>
+                        <div class="row-6">
+                            <h1> <strong>Cafe overview:</strong></h1>
+                            <p>{{ post.content | safe }}</p>
+                        </div>
+                    </div>
+                </div>    
+                
+                <!-- Post image -->
+                <div class="row">
+                    <div class="col- text-center">
+                    {% if "placeholder" in post.featured_image.url %}
+                    <img aria-label="Placeholder image for post" 
+                    src="https://res.cloudinary.com/deoxxigyw/image/upload/c_thumb,w_200,g_face/v1702233159/Favicon_k3purp.png"/>
+                    {% else %}
+                    <img aria-label="Featured image for post" src=" {{ post.featured_image.url }}"/>
+                    {% endif %}
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-8 card mb-4 mt-3">
-    <h3>Discussion:</h3>
-    <div class="card-body">
-      {% for comment in comments %}
-      <div class="comments" style="padding: 10px">
-        <p class="font-weight-bold">
-          {{ comment.name }}
-          <span class="text-muted font-weight-normal">
-            {{ comment.created_on }}
-          </span>
-          wrote:
-        </p>
-        {{ comment.body | linebreaks }}
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div class="col-md-4 card mb-4 mt-3">
-    <div class="card-body">
-      {% if commented %}
-      <div class="alert alert-success" role="alert">
-        Your comment has been sent for approval
-      </div>
-      {% else %} {% if user.is_authenticated %}
+</section>
 
-      <h3>Share your thoughts:</h3>
-      <p>Posting as: {{ user.username }}</p>
-      <form method="post" style="margin-top: 1.3em">
-        {{ comment_form | crispy }} {% csrf_token %}
-        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-      </form>
-      {% endif %} {% endif %}
+<!-- Comments section -->
+<section>
+<div class="container">
+    <div class="class my-3">
+        {% with comments.count as total_comments %}
+        {% if total_comments == 1 %}
+        <h3><strong><i class="far fa-comments"></i> {{ total_comments }}</strong>
+        Comment</h3>
+        {% else %}
+        <h3><strong><i class="far fa-comments"></i> {{ total_comments }}</strong>
+        Comments</h3>
+        {% endif %} 
+        {% endwith %}
+        <div>
+            {% if commented %}
+            <p class="alert alert-success" role="alert">
+                Your comment has been sent for approval
+            </p>
+            {% else %}
+            {% if user.is_authenticated %}
+            <h2><strong>Share your thoughts:</strong></h2>
+            <p>Posting as: {{ user.username }}</p>
+            <form method="post" style="margin-top: 1.3em">
+                {{ comment_form | crispy }} {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+            </form>
+            {% endif %} 
+            {% endif %}
+        </div>
+        <div class="comment-container overflow-auto">
+            {% for comment in comments %}
+            <div class="comments" style="padding: 10px">
+                <p class="font-weight-bold">
+                    {{ comment.name }}
+                    <span class="text-muted font-weight-normal">
+                        {{ comment.created_on }}
+                    </span>
+                    wrote:
+                </p>
+                {{ comment.body | linebreaks }}
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
+</div>    
+</section>
 
-  {% endblock content %}
-</div>
+{% endblock content %}
+
