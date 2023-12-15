@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
+from django.views.generic import CreateView
 from csapp.models import Post, Comment, Category
 from .forms import CommentForm
 
@@ -12,7 +13,7 @@ class Index(generic.ListView):
 
 class PostList(generic.ListView):
     """
-    View for displying all  posts on browse page, filtering by approved 
+    View for displying all posts on browse page, filtering by approved 
     and ordered by descending date to display 6 blog posts per page.
     """
     model = Post
@@ -81,3 +82,9 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             }
         )
+
+class AddPostView(generic.CreateView):
+
+    model = Post
+    template_name = 'add_post.html'
+    fields = '__all__'

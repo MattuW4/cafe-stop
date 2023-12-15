@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<section>
+    <div class="container">
+        <h1>Create a post</h1>
+        <!-- Create a post form -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mt-3">
+                <div class="mb-2">
+                    {{ form.title | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.location | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.opening_time | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.closing_time | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.title | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.website | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.content | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.title | as_crispy_field }}
+                </div>
+                <div>
+                    {{ form.featured_image | as_crispy_field }}
+                </div>
+                <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+{% endblock %}
