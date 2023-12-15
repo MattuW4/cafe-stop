@@ -41,6 +41,12 @@ body {
     padding: 0;
 }
 
+/* Cards */
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 /* Footer */
 
 footer {
