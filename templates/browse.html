@@ -1,15 +1,17 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <div class="container-fluid">
   <h1>Browse the full collection of cafes below</h1>
   <p>Most recent posts are displayed first</p>
   <div class="row">
     <!-- Cafe catalogue column -->
-    <div class="col-12 mt-3 left">
-      <div class="row align-items-center">
+    <div class="col-12 mt-3 ">
+      <div class="row g-3">
         {% for post in post_list %}
         <div class="col-md-4">
-          <div class="card mb-3" style="width: 18rem">
+          <div class="card mb-3">
+            <!-- Card body & detail -->
             <div class="card-body">
               <div class="image-container">
                 {% if "placeholder" in post.featured_image.url %}
@@ -25,18 +27,16 @@
                   src=" {{ post.featured_image.url }}"
                 />
                 {% endif %}
-                <div class="image-flash">
-                  <p class="author">Author: {{ post.author }}</p>
-                </div>
               </div>
-              <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                <h2 class="card-title">{{ post.title }}</h2>
-              </a>
-              <hr />
-              <p class="card-text text-muted h6">
+              <div class="image-flash">
+                <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                <h2 class="card-title">{{ post.title }}</h2></a>
+                <p class="author">Author: {{ post.author }}</p>
+                <hr />
+                <p class="card-text text-muted h6">
                 {{ post.created_on }} <strong class="text-secondary">
-                <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong>
-              </p>
+                    <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong></p>
+            </div>
             </div>
           </div>
         </div>
