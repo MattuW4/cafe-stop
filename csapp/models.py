@@ -41,8 +41,8 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="app_post")
     location = models.CharField(max_length=100)
-    opening_time = models.IntegerField(max_length=2, choices=OPENING_HOURS, default=0)
-    closing_time = models.IntegerField(max_length=2, choices=OPENING_HOURS, default=0)
+    opening_time = models.IntegerField(choices=OPENING_HOURS, default=0)
+    closing_time = models.IntegerField(choices=OPENING_HOURS, default=0)
     website = models.URLField(max_length=100, unique=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()

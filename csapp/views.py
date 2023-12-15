@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.views.generic import CreateView
 from csapp.models import Post, Comment, Category
 from django.urls import reverse_lazy
-from .forms import CommentForm
+from .forms import CommentForm, AddPostForm
 
 
 class Index(generic.ListView):
@@ -92,3 +92,15 @@ class AddPostView(generic.CreateView):
     template_name = 'add_post.html'
     fields = '__all__'
     success_url = reverse_lazy('browse.html')
+    
+    def form_valid(self, form):
+        form.instance.author = self.request
+        return super().form_valid(form)
+
+        return render(
+            request,
+            'add_post.html',
+            {
+                'add_post_form': AddPostForm()
+            }
+        )
