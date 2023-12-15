@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import CreateView
 from csapp.models import Post, Comment, Category
+from django.urls import reverse_lazy
 from .forms import CommentForm
 
 
@@ -84,7 +85,10 @@ class PostDetail(View):
         )
 
 class AddPostView(generic.CreateView):
-
+    """
+    View for adding a post.
+    """
     model = Post
     template_name = 'add_post.html'
     fields = '__all__'
+    success_url = reverse_lazy('browse.html')
