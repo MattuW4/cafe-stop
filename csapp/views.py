@@ -86,19 +86,17 @@ class PostDetail(View):
             }
         )
 
-class AddPostView(generic.CreateView):
+
+class AddPost(CreateView):
     """
     View for adding a post.
     """
     model = Post
     form_class = AddPostForm
-    template_name = 'add_post.html'
-    # fields = '__all__'
-    success_url = reverse_lazy('browse')
-    success_message = 'Thanks for posting. This will be reviewed ASAP!'
+    template_name = 'post_add.html'
+    success_url = reverse_lazy('home')
     
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-        
