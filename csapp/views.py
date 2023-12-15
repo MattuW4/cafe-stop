@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import CreateView
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from csapp.models import Post, Comment, Category
 from django.urls import reverse_lazy
 from .forms import CommentForm, AddPostForm
@@ -89,18 +91,14 @@ class AddPostView(generic.CreateView):
     View for adding a post.
     """
     model = Post
+    form_class = AddPostForm
     template_name = 'add_post.html'
-    fields = '__all__'
-    success_url = reverse_lazy('browse.html')
+    # fields = '__all__'
+    success_url = reverse_lazy('browse')
+    success_message = 'Thanks for posting. This will be reviewed ASAP!'
     
     def form_valid(self, form):
-        form.instance.author = self.request
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
-        return render(
-            request,
-            'add_post.html',
-            {
-                'add_post_form': AddPostForm()
-            }
-        )
+        

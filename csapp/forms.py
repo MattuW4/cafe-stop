@@ -1,8 +1,11 @@
-from .models import Comment, Post
-from django_summernote.widgets import SummernoteWidget
 from django import forms 
+from cloudinary.forms import CloudinaryFileField
+from .models import Comment, Post
 
 class AddPostForm(forms.ModelForm):
+    """
+    Uses forms to enable logged in and authenticated users to create posts and add to browse.html.
+    """
     class Meta:
         model = Post
         fields = [
@@ -15,11 +18,11 @@ class AddPostForm(forms.ModelForm):
             'featured_image',
         ]
 
-        widgets = {
-            'content': SummernoteWidget(),
-        }
 
 class CommentForm(forms.ModelForm):
+    """
+    Uses forms to enable users to add comments to blog posts within the post detail view if they are logged in and authenticated.
+    """
     class Meta:
         model = Comment
         fields = ('body',)
