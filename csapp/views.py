@@ -26,9 +26,10 @@ class PostList(generic.ListView):
 class PostDetail(View):
     """
     View to post/get post detail to render on browse page,
-    filtering posts by approved and ordered by most recent 
+    filtering posts by approved and ordered by most recent
     date/time.
     """
+
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -49,10 +50,11 @@ class PostDetail(View):
             }
         )
     """
-    View for post/get comment detail to render on browse page,
-    filtering comments by approved and ordered by most recent
-    date/time.
+    View to allow authenticated users to comment on posts.
+    If statement checks if a user is logged in, input is
+    valid and then authorises by admin to post."
     """
+
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -96,4 +98,3 @@ class AddPost(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-        

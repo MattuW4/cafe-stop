@@ -71,7 +71,7 @@ class Post(models.Model):
         super(Post, self).save(**kwargs)
 
     def get_absolute_url(self):
-        """Returns users to the home page"""
+        """Returns users to the home page after making a post"""
         return reverse("home")
 
 
