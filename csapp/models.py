@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.urls import reverse
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -65,8 +66,13 @@ class Post(models.Model):
         return self.likes.count()
 
     def save(self, **kwargs):
+        """Function to add slug to user creeated posts"""
         self.slug = slugify(self.title)
         super(Post, self).save(**kwargs)
+
+    def get_absolute_url(self):
+        """Returns users to the home page"""
+        return reverse("home")
 
 
 class Comment(models.Model):
