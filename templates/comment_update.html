@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="m-3">
+        <div>
+            {% if user.is_authenticated %}
+            <h3><strong>Share your thoughts:</strong></h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form method="post" style="margin-top: 1.3em">
+                {{ comment_form | crispy }} {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-lg">Update</button>
+            </form>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
