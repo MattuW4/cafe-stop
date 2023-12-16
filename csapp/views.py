@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib import messages
 from csapp.models import Post, Comment, Category
-from .forms import CommentForm, AddPostForm
+from .forms import CommentForm, AddPostForm, UpdatePostForm
 
 
 class Index(generic.ListView):
@@ -96,5 +96,26 @@ class AddPost(CreateView):
     template_name = 'post_add.html'
 
     def form_valid(self, form):
+        """Validate form after connecting form author to user"""
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class UpdatePost(UpdateView):
+    """
+    View for updating/editing a post.
+    """
+    model = Post
+    template_name = 'post_update.html'
+    form_class = UpdatePostForm
+
+    def form_valid(self, form):
+        """Validate form after connecting form author to user"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

@@ -14,6 +14,16 @@ class AddPostForm(forms.ModelForm):
                   'website', 'content', 'featured_image',]
 
 
+class UpdatePostForm(forms.ModelForm):
+    """
+    Used forms and UpdatePost viw to enable a user to edit own blog post.
+    """
+    class Meta:
+        model = Post
+        fields = ['title', 'location', 'opening_time', 'closing_time',
+                  'website', 'content', 'featured_image',]
+
+
 class CommentForm(forms.ModelForm):
     """
     Uses forms to enable users to add comments to blog posts within the post
