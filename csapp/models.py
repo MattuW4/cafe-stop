@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -34,7 +35,7 @@ OPENING_HOURS = (
 
 class Post(models.Model):
     """
-    Database model for Posts
+    Database model for Post creation.
     """
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -62,6 +63,10 @@ class Post(models.Model):
     def number_of_likes(self):
         """Returns number of posts likes"""
         return self.likes.count()
+
+    def save(self, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(**kwargs)
 
 
 class Comment(models.Model):

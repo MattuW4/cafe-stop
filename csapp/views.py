@@ -2,9 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import CreateView
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from csapp.models import Post, Comment, Category
-from django.urls import reverse_lazy
 from .forms import CommentForm, AddPostForm
 
 
@@ -16,7 +14,7 @@ class Index(generic.ListView):
 
 class PostList(generic.ListView):
     """
-    View for displying all posts on browse page, filtering by approved 
+    View for displying all posts on browse page, filtering by approved
     and ordered by descending date to display 6 blog posts per page.
     """
     model = Post
@@ -29,7 +27,7 @@ class PostDetail(View):
     """
     View to post/get post detail to render on browse page,
     filtering posts by approved and ordered by most recent 
-    date/time. 
+    date/time.
     """
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
@@ -52,8 +50,8 @@ class PostDetail(View):
         )
     """
     View for post/get comment detail to render on browse page,
-    filtering comments by approved and ordered by most recent 
-    date/time. 
+    filtering comments by approved and ordered by most recent
+    date/time.
     """
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
@@ -94,9 +92,8 @@ class AddPost(CreateView):
     model = Post
     form_class = AddPostForm
     template_name = 'post_add.html'
-    success_url = reverse_lazy('home')
-    
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+        
