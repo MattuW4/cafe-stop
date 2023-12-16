@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import CreateView, UpdateView
 from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
 from csapp.models import Post, Comment, Category
 from .forms import CommentForm, AddPostForm, UpdatePostForm
 
@@ -101,7 +102,7 @@ class AddPost(CreateView):
         return super().form_valid(form)
 
 
-class UpdatePost(UpdateView):
+class UpdatePost(UserPassesTestMixin, generic.UpdateView):
     """
     View for updating/editing a post.
     """
