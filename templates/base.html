@@ -97,9 +97,11 @@
                 class="nav-link"
                 aria-label="Link to sign out of account"
                 href="{% url 'account_logout' %}"
-              >
-                Sign Out
+              >Sign Out
               </a>
+            </li>
+            <li class="nav-item">
+                <p>(Logged in as: {{ request.user.username }})</p>
             </li>
             {% else %}
             <li class="nav-item">

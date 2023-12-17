@@ -8,6 +8,7 @@ urlpatterns = [
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('add', views.AddPost.as_view(), name='add'),
     path('post/update/<slug:slug>', views.UpdatePost.as_view(), name='update'),
-    path('comment_update/<slug:slug>/<int:pk>',
-         views.UpdateComment.as_view(), name='comment_update'),
+    path('post/remove/<slug:slug>/', views.DeletePost.as_view(), name='delete'),
+    # path('<slug:slug>/comment-update/<int:pk>', views.CommentEdit.as_view(),
+    #      name='comment_edit'),
     ]
