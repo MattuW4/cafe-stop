@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib import messages
@@ -149,13 +149,7 @@ class DeletePost(UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('browse')
-
-    def delete(self, request, slug, *args, **kwargs):
-        post = get_object_or_404(Post, slug=slug)
-
-        if request.method == 'POST':
-            post.delete()
-            
+          
 
     def test_func(self):
         """Test that comment author is the same as logged in user"""

@@ -48,8 +48,8 @@
         <div class="row-g-8">
             {% if user.is_authenticated %} 
             <a href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
-            <a href="{% url 'delete' post.slug  %}" type="button" class="btn btn-secondary btn-lg"><i
-                    class="fas fa-trash"></i>Delete
+            <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-secondary btn-lg"><i
+                    class="fas fa-trash"></i> Delete
                 the post</a>
             {% endif %}            
         </div>
