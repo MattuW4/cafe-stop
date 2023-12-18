@@ -1,7 +1,13 @@
 from django import forms
 from cloudinary.forms import CloudinaryFileField
-from .models import Comment, Post
+from .models import Comment, Post, Category
 
+choices = Category.objects.all().values_list('name', 'name')
+
+choice_list = []
+
+for item in choices:
+    choice_list.append(item)
 
 class AddPostForm(forms.ModelForm):
     """
@@ -11,7 +17,11 @@ class AddPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'location', 'opening_time', 'closing_time',
-                  'website', 'content', 'featured_image',]
+                  'website', 'category', 'content', 'featured_image',]
+
+        widgets = {
+            'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
+        }
 
 
 class UpdatePostForm(forms.ModelForm):

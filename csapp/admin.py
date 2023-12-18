@@ -31,7 +31,4 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(approved=True)
 
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    """Admin category model"""
-    pass
+admin.site.register(Category)
