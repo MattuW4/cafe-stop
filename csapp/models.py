@@ -52,6 +52,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
+    category = models.CharField(max_length=30, default='uncategorised')
 
     class Meta:
         """Sets the order of posts by descending order"""
@@ -108,3 +109,7 @@ class Category(models.Model):
     def __str__(self):
         """Returns the name of the category"""
         return self.name
+
+    def get_absolute_url(self):
+        """Returns user to home page on submission"""
+        return reverse('home')
