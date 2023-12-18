@@ -169,4 +169,3 @@ class AddCategory(CreateView):
         """Validate form after connecting form author to user"""
         form.instance.author = self.request.user
         return super().form_valid(form)
-        
