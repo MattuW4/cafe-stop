@@ -14,9 +14,9 @@
                 <div class="col-6">
                     <h1><strong>{{ post.title }}</strong></h1>
                     <div class="text-secondary">
-                        <p><strong>Posted by: {{ post.author }} / {{ post.created_on }}</strong></p>
-                        <p> <strong>Location: {{ post.location | safe }} / Website: {{ post.website | safe }}</strong></p>
-                        <p> <strong>Opens: {{ post.opening_time | safe }}</strong> / <strong>Closes: {{ post.closing_time | safe }}</strong></p>
+                        <p><strong>Posted by: {{ post.author }} | {{ post.created_on }}</strong></p>
+                        <p> <strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
+                        <p> <strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
                         <strong>Rating: <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong>
                     </div>                    
                 </div>
@@ -89,11 +89,11 @@
             {% for comment in comments %}
             <div class="comments" style="padding: 10px">
                 <p class="font-weight-bold">
-                    {{ comment.name }}
                     <span class="text-muted font-weight-normal">
                         {{ comment.created_on }}
+                        {{ comment.author }} wrote:
                     </span>
-                    wrote:
+                    
                 </p>
                 {{ comment.body | linebreaks }}
             </div>
@@ -101,7 +101,8 @@
         </div>
     </div>
 </div>
-<div class="container">
+<!--- Comment update -->
+<!-- <div class="container">
     <div class="row-g-8">
         {% if user.is_authenticated %}
         
@@ -109,7 +110,7 @@
         {% endif %}
     </div>
 </div>
-</section>
+</section> -->
 
 {% endblock content %}
 
