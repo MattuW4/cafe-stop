@@ -156,3 +156,17 @@ class DeletePost(UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+class AddCategory(CreateView):
+    """
+    View for adding a post.
+    """
+    model = Category
+    fields = '__all__'
+    template_name = 'category_add.html'
+
+    def form_valid(self, form):
+        """Validate form after connecting form author to user"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+        
