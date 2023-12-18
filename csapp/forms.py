@@ -9,6 +9,7 @@ choice_list = []
 for item in choices:
     choice_list.append(item)
 
+
 class AddPostForm(forms.ModelForm):
     """
     Uses forms to enable logged in and authenticated users to create posts and

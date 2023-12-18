@@ -14,9 +14,10 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content')
     actions = ['approve_posts']
 
-    #Function to approve posts by admin
+    """Function to approve posts by admin"""
     def approve_posts(self, request, queryset):
         queryset.update(status='1')
+
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

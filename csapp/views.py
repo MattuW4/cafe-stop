@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from csapp.models import Post, Comment, Category
 from .forms import CommentForm, AddPostForm, UpdatePostForm
 
+
 class Index(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
@@ -156,6 +157,7 @@ class DeletePost(UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
 
 class AddCategory(CreateView):
     """

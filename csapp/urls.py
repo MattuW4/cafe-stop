@@ -10,7 +10,4 @@ urlpatterns = [
     path('post/update/<slug:slug>', views.UpdatePost.as_view(), name='update'),
     path('post/<int:pk>/remove', views.DeletePost.as_view(), name='delete'),
     path('add_category', views.AddCategory.as_view(), name='add_category'),
-    
-    # path('<slug:slug>/comment-update/<int:pk>', views.CommentEdit.as_view(),
-    #      name='comment_edit'),
     ]
