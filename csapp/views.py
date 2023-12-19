@@ -161,7 +161,7 @@ class DeletePost(UserPassesTestMixin, DeleteView):
 
 class AddCategory(CreateView):
     """
-    View for adding a post.
+    View for adding a category.
     """
     model = Category
     fields = '__all__'
@@ -171,3 +171,20 @@ class AddCategory(CreateView):
         """Validate form after connecting form author to user"""
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+# class SearchCategory(generic.ListView):
+#     """
+#     View for viewing categories.
+#     """
+#     model = Category
+#     template_name = 'categories.html'
+
+#     def cata_view(request, cata):
+#         returnrender(request, 'categories.html', {'cata': cata})
+
+
+#     def form_valid(self, form):
+#         """Validate form after connecting form author to user"""
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)

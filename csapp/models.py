@@ -33,6 +33,24 @@ OPENING_HOURS = (
     (23, '11pm'),
 )
 
+class Category(models.Model):
+    """
+    Database model for Categories
+    """
+    name = models.CharField(max_length=30)
+
+    class Meta:
+        """Fixes incorrect category form from singular to plural"""
+        verbose_name_plural = "categories"
+
+    def __str__(self):
+        """Returns the name of the category"""
+        return self.name
+
+    def get_absolute_url(self):
+        """Returns user to home page on submission"""
+        return reverse('home')
+        
 
 class Post(models.Model):
     """
@@ -52,7 +70,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
-    category = models.CharField(max_length=30, default='uncategorised')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
     class Meta:
         """Sets the order of posts by descending order"""
@@ -96,20 +114,4 @@ class Comment(models.Model):
         return f"Comment {self.body} by {self.author}"
 
 
-class Category(models.Model):
-    """
-    Database model for Categories
-    """
-    name = models.CharField(max_length=30)
 
-    class Meta:
-        """Fixes incorrect category form from singular to plural"""
-        verbose_name_plural = "categories"
-
-    def __str__(self):
-        """Returns the name of the category"""
-        return self.name
-
-    def get_absolute_url(self):
-        """Returns user to home page on submission"""
-        return reverse('home')
