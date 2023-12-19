@@ -10,5 +10,5 @@ urlpatterns = [
     path('post/update/<slug:slug>', views.UpdatePost.as_view(), name='update'),
     path('post/<int:pk>/remove', views.DeletePost.as_view(), name='delete'),
     path('add_category', views.AddCategory.as_view(), name='add_category'),
-    # path('category/<str:cata>/', views.SearchCategory.as_view(), name='category_search'),
+    path('category/<category>/', views.SearchCategory.as_view(), name='category_search'),
     ]

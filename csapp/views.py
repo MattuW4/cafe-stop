@@ -173,18 +173,24 @@ class AddCategory(CreateView):
         return super().form_valid(form)
 
 
-# class SearchCategory(generic.ListView):
-#     """
-#     View for viewing categories.
-#     """
-#     model = Category
-#     template_name = 'categories.html'
+class SearchCategory(generic.ListView):
+    """
+    View for viewing categories.
+    """
+    model = Category
+    template_name = 'categories.html'
+    context_object_name = 'catalist'
 
-#     def cata_view(request, cata):
-#         returnrender(request, 'categories.html', {'cata': cata})
+    def get_queryset(self):
+        content = {
+            'cata': self.kwargs['category'],
+            'posts': Post.objects.filter(category__name=self.kwargs
+            ['category']).filter(status='1')
+        }
+        return content
 
 
-#     def form_valid(self, form):
-#         """Validate form after connecting form author to user"""
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        """Validate form after connecting form author to user"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)

@@ -1,11 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- <div class="container-fluid">
-    <h1>Search the categories below</h1>
-    <!-- {{ cata }} -->
-    <div class="row">
-        <!-- Categories catalogue column -->
+<div class="container-fluid">
+     <div class="row">
         <div class="col-12 mt-3 ">
-            <div class="row g-3"> -->
+            <h1> List of {{ catalist.cata }} posts </h1>
+        </div>
+        {% for post in catalist.posts %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+              <!-- Card body & detail -->
+              <div class="card-body">
+                <div class="image-container ">
+                  {% if "placeholder" in post.featured_image.url %}
+                  <img
+                    class="card-img-top"
+                    aria-label="Placeholder image for post"
+                    src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
+                  />
+                  {% else %}
+                  <img
+                    class="card-img-top"
+                    aria-label="Featured image for post"
+                    src=" {{ post.featured_image.url }}"
+                  />
+                  {% endif %}
+                </div>
+                <div class="image-flash">
+                  <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                  <h2 class="card-title">{{ post.title }}</h2></a>
+                  <p class="author">Posted by: {{ post.author }}</p>
+                  <hr />
+                  <p class="card-text text-muted h6">
+                  {{ post.created_on }} <strong class="text-secondary">
+                      <i class="far fa-comments"></i> {{ post.comments.count }} |
+                      <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}
+                  </strong>
+                  </p>
+              </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}        
+    </div>
+</div>
 {% endblock %}
