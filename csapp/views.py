@@ -194,3 +194,10 @@ class SearchCategory(generic.ListView):
         """Validate form after connecting form author to user"""
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+def category_list(request):
+    category_list = Category.objects
+    context = {
+        'category_list': category_list,
+    }
+    return context
