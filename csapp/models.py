@@ -98,7 +98,8 @@ class Comment(models.Model):
     """
     Database model for Comments
     """
-    author = models.CharField(max_length=60)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="app_comments")
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments')
     body = models.TextField()
