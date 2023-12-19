@@ -13,6 +13,17 @@
             <div class="row-g-8">
                 <div class="col-6">
                     <h1><strong>{{ post.title }}</strong></h1>
+                    <!-- Post image -->
+                    <div class="row">
+                        <div class="col- text-center">
+                            {% if "placeholder" in post.featured_image.url %}
+                            <img aria-label="Placeholder image for post"
+                            src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"/>
+                            {% else %}
+                            <img aria-label="Featured image for post" src=" {{ post.featured_image.url }}"/>
+                            {% endif %}
+                        </div>
+                    </div>
                     <div class="text-secondary">
                         <p><strong>Posted by: {{ post.author }} | {{ post.created_on }}</strong></p>
                         <p> <strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
@@ -33,32 +44,21 @@
                             <p>{{ post.content | safe }}</p>
                         </div>
                     </div>
-                </div>    
-                
-                <!-- Post image -->
-                <div class="row">
-                    <div class="col- text-center">
-                    {% if "placeholder" in post.featured_image.url %}
-                    <img aria-label="Placeholder image for post" 
-                    src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"/>
-                    {% else %}
-                    <img aria-label="Featured image for post" src=" {{ post.featured_image.url }}"/>
-                    {% endif %}
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <br>
     <div class="container">
+        {% if user.is_authenticated %}
         <div class="row-g-8">
-            {% if user.is_authenticated %} 
             <a href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
-            <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-secondary btn-lg"><i
-                    class="fas fa-trash"></i> Delete
-                the post</a>
-            {% endif %}            
         </div>
+        <br>
+        <div class="row-g-8">
+            <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-secondary btn-lg"><i class="fas fa-trash"></i> Delete the post</a>        
+        </div>
+        {% endif %}
     </div>
 </section>
 
