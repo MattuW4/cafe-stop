@@ -72,6 +72,7 @@ class PostDetail(View):
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
+            comment.author = request.user
             comment.save()
         else:
             comment_form = CommentForm()

@@ -21,8 +21,6 @@ class AddPostForm(forms.ModelForm):
             'content': SummernoteWidget(),
         }
 
-        
-
 
 class UpdatePostForm(forms.ModelForm):
     """
@@ -39,8 +37,11 @@ class CommentForm(forms.ModelForm):
     Uses forms to enable users to add comments to blog posts within the post
     detail view if they are logged in and authenticated.
     """
+
+    # author = forms.CharField()
+    
     class Meta:
         model = Comment
-        fields = ('author', 'body',)
+        fields = ('body',)
 
 
