@@ -41,6 +41,11 @@ body {
     padding: 0;
 }
 
+#dropdown-button {
+    background-color: transparent;
+    outline: none;
+}
+
 /* Cards */
 .card-img-top {
     width: 100%;
