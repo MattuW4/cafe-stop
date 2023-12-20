@@ -29,12 +29,6 @@
                         <p> <strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
                         <p> <strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
                         <p><strong>Rating: <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong></p>
-                        <!-- <p>{% if "uncategorised" in post.category %}
-                            <strong>Categories: {{ 'None selected' }}</strong>
-                            {% else %}
-                            <strong>Categories: {{ post.category | safe }}</strong>
-                            {% endif %}                        
-                        </p> -->
                     </div>                    
                 </div>
                 <div class="container">
