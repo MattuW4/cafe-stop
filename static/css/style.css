@@ -16,6 +16,9 @@ img {
 body {
     font-family: 'Raleway', sans-serif;
     padding-top: 4.063rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -52,10 +55,11 @@ body {
     height: 15vw;
     object-fit: cover;
 }
+
 /* Footer */
 
 footer {
-    padding-top: 7.125rem;
+    margin-top: auto;
     text-align: center;
     width: 100%;
 
