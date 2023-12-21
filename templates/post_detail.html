@@ -26,10 +26,24 @@
                     </div>
                     <div class="text-secondary">
                         <p><strong>Posted by: {{ post.author|title }} | {{ post.created_on }}</strong></p>
-                        <p> <strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
-                        <p> <strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
-                        <p> <strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
-                        <p><strong>Rating: <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong></p>
+                        <p><strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
+                        <p><strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
+                        <p><strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
+                        <p>
+                            {% if user.is_authenticated %}
+                            <form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                                <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like"><i class="far fa-heart"></i></button>
+                                {% endif %} 
+                            </form>
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            {% endif %}
+                            <strong>Rating: <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong>
+                        </p>
                     </div>                    
                 </div>
                 <div class="container">
