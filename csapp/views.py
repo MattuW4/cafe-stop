@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect 
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib import messages
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from csapp.models import Post, Comment, Category
 from .forms import CommentForm, AddPostForm, UpdatePostForm
@@ -25,7 +25,7 @@ class PostList(generic.ListView):
     template_name = 'browse.html'
     paginate_by = 6
 
-class PostLike(View):
+class PostLike(LoginRequiredMixin, View):
 
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
@@ -127,7 +127,7 @@ class PostDetail(View):
 #     template_name = 'comment_delete.html'
 #     success_url = reverse_lazy('browse')
 
-class AddPost(CreateView):
+class AddPost(LoginRequiredMixin, CreateView):
     """
     View for adding a post.
     """
@@ -162,7 +162,7 @@ class UpdatePost(UserPassesTestMixin, generic.UpdateView):
         return False
 
 
-class DeletePost(UserPassesTestMixin, DeleteView):
+class DeletePost(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('browse')
@@ -175,18 +175,18 @@ class DeletePost(UserPassesTestMixin, DeleteView):
         return False
 
 
-class AddCategory(CreateView):
-    """
-    View for adding a category.
-    """
-    model = Category
-    fields = '__all__'
-    template_name = 'category_add.html'
+# class AddCategory(CreateView):
+#     """
+#     View for adding a category.
+#     """
+#     model = Category
+#     fields = '__all__'
+#     template_name = 'category_add.html'
 
-    def form_valid(self, form):
-        """Validate form after connecting form author to user"""
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         """Validate form after connecting form author to user"""
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 
 
 class SearchCategory(generic.ListView):

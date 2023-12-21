@@ -46,11 +46,7 @@ class Category(models.Model):
     def __str__(self):
         """Returns the name of the category"""
         return self.name
-
-    def get_absolute_url(self):
-        """Returns user to home page on submission"""
-        return reverse('home')
-        
+      
 
 class Post(models.Model):
     """
@@ -91,7 +87,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         """Returns users to the home page after making a post"""
-        return reverse("home")
+        return reverse('home')
 
 
 class Comment(models.Model):
