@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="text-secondary">
-                        <p><strong>Posted by: {{ post.author }} | {{ post.created_on }}</strong></p>
+                        <p><strong>Posted by: {{ post.author|title }} | {{ post.created_on }}</strong></p>
                         <p> <strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
                         <p> <strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
                         <p> <strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
@@ -78,7 +78,7 @@
             {% else %}
             {% if user.is_authenticated %}
             <h3><strong>Share your thoughts:</strong></h3>
-            <p>Posting as: {{ user.username }}</p>
+            <p>Posting as: {{ user.username|title }}</p>
             <form method="post" style="margin-top: 1.3em">
                 {{ comment_form | crispy }} {% csrf_token %}
                 <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
@@ -92,7 +92,7 @@
                 <p class="font-weight-bold">
                     <span class="text-muted font-weight-normal">
                         {{ comment.created_on }}
-                        {{ comment.author }} wrote:
+                        {{ comment.author|title }} wrote:
                     </span>
                 </p>
                 {{ comment.body | linebreaks }}
