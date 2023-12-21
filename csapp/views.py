@@ -103,13 +103,14 @@ class PostDetail(View):
         )
 
 
-class AddPost(LoginRequiredMixin, generic.CreateView):
+class AddPost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """
     View for adding a post.
     """
     model = Post
     form_class = AddPostForm
     template_name = 'post_add.html'
+    success_message = 'You added a post!'
 
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
@@ -124,7 +125,7 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
     model = Post
     template_name = 'post_update.html'
     form_class = UpdatePostForm
-    
+    success_message = 'You updated your post!'
 
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
@@ -139,9 +140,10 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
         return False
 
 
-class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
     model = Post
     template_name = 'post_delete.html'
+    success_message = 'You deleted your post!'
     success_url = reverse_lazy('browse')
 
     def test_func(self):
