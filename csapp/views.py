@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from csapp.models import Post, Comment, Category
 from .forms import CommentForm, AddPostForm, UpdatePostForm
@@ -102,32 +103,7 @@ class PostDetail(View):
         )
 
 
-# class CommentEdit(UserPassesTestMixin, generic.UpdateView):
-#     """
-#     View for updating/editing a comment.
-#     """
-#     model = Comment
-#     template_name = 'comment_edit.html'
-#     form_class = EditCommentForm
-    
-#     def form_valid(self, form):
-#         """Validate form after connecting form author to user"""
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-
-#     def test_func(self):
-#         """Test that comment author is the same as logged in user"""
-#         post = self.get_object()
-#         if self.request.user == post.author:
-#             return True
-#         return False
-
-# class CommentDelete(DeleteView):
-#     model = Post
-#     template_name = 'comment_delete.html'
-#     success_url = reverse_lazy('browse')
-
-class AddPost(LoginRequiredMixin, CreateView):
+class AddPost(LoginRequiredMixin, generic.CreateView):
     """
     View for adding a post.
     """
@@ -141,13 +117,14 @@ class AddPost(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdatePost(UserPassesTestMixin, generic.UpdateView):
+class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, generic.UpdateView):
     """
     View for updating/editing a post.
     """
     model = Post
     template_name = 'post_update.html'
     form_class = UpdatePostForm
+    
 
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
@@ -155,38 +132,24 @@ class UpdatePost(UserPassesTestMixin, generic.UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
-        """Test that comment author is the same as logged in user"""
+        """Test that post author is the same as logged in user"""
         post = self.get_object()
         if self.request.user == post.author:
             return True
         return False
 
 
-class DeletePost(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class DeletePost(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('browse')
 
     def test_func(self):
-        """Test that comment author is the same as logged in user"""
+        """Test that post author is the same as logged in user"""
         post = self.get_object()
         if self.request.user == post.author:
             return True
         return False
-
-
-# class AddCategory(CreateView):
-#     """
-#     View for adding a category.
-#     """
-#     model = Category
-#     fields = '__all__'
-#     template_name = 'category_add.html'
-
-#     def form_valid(self, form):
-#         """Validate form after connecting form author to user"""
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
 
 
 class SearchCategory(generic.ListView):
@@ -217,3 +180,43 @@ def category_list(request):
         'category_list': category_list,
     }
     return context
+
+
+# class AddCategory(CreateView):
+#     """
+#     View for adding a category.
+#     """
+#     model = Category
+#     fields = '__all__'
+#     template_name = 'category_add.html'
+
+#     def form_valid(self, form):
+#         """Validate form after connecting form author to user"""
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
+
+# class CommentEdit(UserPassesTestMixin, generic.UpdateView):
+#     """
+#     View for updating/editing a comment.
+#     """
+#     model = Comment
+#     template_name = 'comment_edit.html'
+#     form_class = EditCommentForm
+    
+#     def form_valid(self, form):
+#         """Validate form after connecting form author to user"""
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
+
+#     def test_func(self):
+#         """Test that comment author is the same as logged in user"""
+#         post = self.get_object()
+#         if self.request.user == post.author:
+#             return True
+#         return False
+
+# class CommentDelete(DeleteView):
+#     model = Post
+#     template_name = 'comment_delete.html'
+#     success_url = reverse_lazy('browse')
+
