@@ -56,6 +56,10 @@ body {
     object-fit: cover;
 }
 
+#card-info {
+    text-align: center;
+}
+
 /* Footer */
 
 footer {

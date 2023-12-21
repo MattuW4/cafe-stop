@@ -72,7 +72,6 @@ class PostDetail(View):
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
-            comment.author = request.user
             comment.save()
         else:
             comment_form = CommentForm()
@@ -95,10 +94,9 @@ class PostDetail(View):
 #     View for updating/editing a comment.
 #     """
 #     model = Comment
-#     template_name = 'comment_update.html'
-#     fields = ['body']
-#     form_class = UpdateCommentForm
-
+#     template_name = 'comment_edit.html'
+#     form_class = EditCommentForm
+    
 #     def form_valid(self, form):
 #         """Validate form after connecting form author to user"""
 #         form.instance.author = self.request.user
@@ -111,6 +109,10 @@ class PostDetail(View):
 #             return True
 #         return False
 
+# class CommentDelete(DeleteView):
+#     model = Post
+#     template_name = 'comment_delete.html'
+#     success_url = reverse_lazy('browse')
 
 class AddPost(CreateView):
     """

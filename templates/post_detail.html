@@ -28,7 +28,7 @@
                         <p><strong>Posted by: {{ post.author }} | {{ post.created_on }}</strong></p>
                         <p> <strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
                         <p> <strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
-                        <p> <strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a> {{ post.category }}</strong> </p>
+                        <p> <strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
                         <p><strong>Rating: <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong></p>
                     </div>                    
                 </div>
@@ -104,13 +104,15 @@
 <!--- Comment update -->
 <!-- <div class="container">
     <div class="row-g-8">
-        {% if user.is_authenticated %}
         
-                class="fa-solid fa-file-pen"></i>Update your Comment</a>
-        {% endif %}
     </div>
-</div>
-</section> -->
+</div> -->
+<!-- <div>
+    {% if request.user == comment.author %}
+    <a href="{% url 'comment_delete' post.pk comment.pk %}" type="button" class="btn btn-secondary btn-lg">Delete this comment<i class="fas fa-trash"></i></a>
+    {% endif %}
+</div> -->
+</section>
 
 {% endblock content %}
 

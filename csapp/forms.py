@@ -37,11 +37,19 @@ class CommentForm(forms.ModelForm):
     Uses forms to enable users to add comments to blog posts within the post
     detail view if they are logged in and authenticated.
     """
-
-    # author = forms.CharField()
     
     class Meta:
         model = Comment
         fields = ('body',)
+
+# class EditCommentForm(forms.ModelForm):
+#     """
+#     Uses forms to enable users to add comments to blog posts within the post
+#     detail view if they are logged in and authenticated.
+#     """
+    
+#     class Meta:
+#         model = Comment
+#         fields = ['author', 'body',]
 
 
