@@ -31,18 +31,18 @@
                         <p><strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
                         <p>
                             {% if user.is_authenticated %}
-                            <form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
+                            <strong><form action="{% url 'like_post' post.slug %}" class="d-inline text-secondary" method="POST">
                                 {% csrf_token %}
                                 {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                Rating: <button class="btn-lg like-button" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> {{ post.number_of_likes }}
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like"><i class="far fa-heart"></i></button>
+                                Rating: <button class="btn-lg like-button" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> {{ post.number_of_likes }}
                                 {% endif %} 
                             </form>
                             {% else %}
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            <span class="text-secondary">Rating: <i class="far fa-heart"></i>{{ post.number_of_likes }}</span>
                             {% endif %}
-                            <strong>Rating: <i class="fa-solid fa-heart"></i> {{ post.number_of_likes }}</strong>
+                            </strong>
                         </p>
                     </div>                    
                 </div>

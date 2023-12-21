@@ -60,6 +60,11 @@ body {
     text-align: center;
 }
 
+/* Post detail page */
+.like-button {
+    background-color: transparent;
+    outline: none;
+}
 /* Footer */
 
 footer {
