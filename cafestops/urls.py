@@ -22,3 +22,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('', include('csapp.urls'), name='csapp_urls')
 ]
+
+handler404 = 'cafestops.views.error_404'
+handler403= 'cafestops.views.error_403'

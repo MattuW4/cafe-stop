@@ -25,6 +25,7 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'browse.html'
     paginate_by = 6
+    
 
 class PostLike(LoginRequiredMixin, View):
 
@@ -103,8 +104,6 @@ class PostDetail(View):
             }
         )
 
-    
-
 
 class AddPost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """
@@ -146,7 +145,6 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
         if self.request.user == post.author:
             return True
         return False
-    
 
 
 class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
