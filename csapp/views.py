@@ -45,7 +45,8 @@ class PostDetail(View):
     filtering posts by approved and ordered by most recent
     date/time.
     """
-
+    
+    
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -101,6 +102,8 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             }
         )
+
+    
 
 
 class AddPost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):

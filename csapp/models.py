@@ -6,32 +6,7 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
-OPENING_HOURS = (
-    (0, '12am'),
-    (1, '1am'),
-    (2, '2am'),
-    (3, '3am'),
-    (4, '4am'),
-    (5, '5am'),
-    (6, '6am'),
-    (7, '7am'),
-    (8, '8am'),
-    (9, '9am'),
-    (10, '10am'),
-    (11, '11am'),
-    (12, '12pm'),
-    (13, '1pm'),
-    (14, '2pm'),
-    (15, '3pm'),
-    (16, '4pm'),
-    (17, '5pm'),
-    (18, '6pm'),
-    (19, '7pm'),
-    (20, '8pm'),
-    (21, '9pm'),
-    (22, '10pm'),
-    (23, '11pm'),
-)
+
 
 class Category(models.Model):
     """
@@ -52,6 +27,33 @@ class Post(models.Model):
     """
     Database model for Post creation.
     """
+    OPENING_HOURS = [
+        (0, '12am'),
+        (1, '1am'),
+        (2, '2am'),
+        (3, '3am'),
+        (4, '4am'),
+        (5, '5am'),
+        (6, '6am'),
+        (7, '7am'),
+        (8, '8am'),
+        (9, '9am'),
+        (10, '10am'),
+        (11, '11am'),
+        (12, '12pm'),
+        (13, '1pm'),
+        (14, '2pm'),
+        (15, '3pm'),
+        (16, '4pm'),
+        (17, '5pm'),
+        (18, '6pm'),
+        (19, '7pm'),
+        (20, '8pm'),
+        (21, '9pm'),
+        (22, '10pm'),
+        (23, '11pm'),
+        ]
+
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
@@ -68,6 +70,7 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
+    
     class Meta:
         """Sets the order of posts by descending order"""
         ordering = ['-created_on']

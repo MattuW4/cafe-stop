@@ -27,7 +27,9 @@
                     <div class="text-secondary">
                         <p><strong>Posted by: {{ post.author|title }} | {{ post.created_on }}</strong></p>
                         <p><strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
-                        <p><strong>Opens: {{ post.opening_time | safe }}</strong> | <strong>Closes: {{ post.closing_time | safe }}</strong></p>
+                        
+                        <p><strong>Opens: {{ post.get_opening_time_display  }}</strong> | <strong>Closes: {{ post.get_closing_time_display  }}</strong></p>
+                        
                         <p><strong>Category: <a href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
                         <p>
                             {% if user.is_authenticated %}
