@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 my-auto form-container text-center rounded mx-auto my-2 py-2">
+            <h1>Error 405: Method Not Allowed </h1>
+            <h2>This message indicates that the web server has recognised a request from the 
+                web browser to access the website but rejects the specific HTTP method!</h2>
+            <p></p>
+            <div>
+                <img
+                  aria-label="Cloudinary image for error page"
+                  src="https://res.cloudinary.com/deoxxigyw/image/upload/c_thumb,w_200,g_face/v1702233159/Favicon_k3purp.png"
+                />
+            </div>
+            <div>
+                <p>Here are some helpful links instead</p>
+                <a href="{% url 'home' %}" class="btn">Home</a>
+                <a href="{% url 'browse' %}" class="btn">Browse</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
