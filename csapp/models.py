@@ -61,7 +61,7 @@ class Post(models.Model):
     location = models.CharField(max_length=100)
     opening_time = models.IntegerField(choices=OPENING_HOURS, default=0)
     closing_time = models.IntegerField(choices=OPENING_HOURS, default=0)
-    website = models.URLField(max_length=100, unique=True)
+    website = models.URLField(max_length=100, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')

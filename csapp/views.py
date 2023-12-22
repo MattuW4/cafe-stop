@@ -129,6 +129,11 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
     template_name = 'post_update.html'
     form_class = UpdatePostForm
     success_message = 'You updated your post!'
+    
+    def post(self, request, slug, *args, **kwargs):
+        post = get_object_or_404(Post, slug=slug)
+        
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
@@ -141,6 +146,7 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
         if self.request.user == post.author:
             return True
         return False
+    
 
 
 class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
