@@ -132,7 +132,7 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
     
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
-        
+        messages.success(self.request, self.success_message)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
     def form_valid(self, form):
