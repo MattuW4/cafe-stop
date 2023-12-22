@@ -155,6 +155,10 @@ class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, 
     success_message = 'You deleted your post!'
     success_url = reverse_lazy('browse')
 
+    def post(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(DeletePost, self).delete(request, *args, **kwargs)
+
     def test_func(self):
         """Test that post author is the same as logged in user"""
         post = self.get_object()
