@@ -34,6 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '8000-mattuw4-cafe-stop-hnz25o9vte.us2.codeanyapp.com', 'cafe-stops-app.herokuapp.com', 'localhost', 'cafe-stops-app-1a89f942fe7e.herokuapp.com', '8000-mattuw4-cafe-stop-pjxls9nu4f.us2.codeanyapp.com',]
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application definition
 
