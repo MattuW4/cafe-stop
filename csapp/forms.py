@@ -1,6 +1,9 @@
 from django import forms
 from cloudinary.forms import CloudinaryFileField
 from django_summernote.widgets import SummernoteWidget
+from django.forms import ( MultiWidget, MultiValueField, TextInput, Textarea, URLInput)
+from django.utils.translation import ugettext_lazy as _
+
 from .models import Comment, Post
 
 
@@ -19,8 +22,27 @@ class AddPostForm(forms.ModelForm):
 
         widgets = {
             'content': SummernoteWidget(),
+            'title': forms.TextInput(attrs={
+                'placeholder': 'Enter cafe name'
+            }),
+            'location': forms.TextInput(attrs={
+                'placeholder': 'Enter the location e.g. Malham Cove, Yorkshire Dales'
+            }),
+            'website': forms.URLInput(attrs={
+                'placeholder': 'Enter the links to their socials'
+            }),
         }
 
+        labels = {
+            'title': _('Cafe name:'),
+            'location': _('Cafe location:'),
+            'opening_time': _('Cafe opening time:'),
+            'closing_time': _('Cafe closing time:'),
+            'website': _('Cafe website/socials (optional):'),
+            'category': _('Category - select one from the drop down menu:'),
+            'content': _('Description - tell us about your experience:'),
+            'featured_image': _('Upload an image of the cafe:'),
+        }
 
 class UpdatePostForm(forms.ModelForm):
     """
@@ -30,6 +52,17 @@ class UpdatePostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'location', 'opening_time', 'closing_time',
                   'website', 'content', 'featured_image',]
+
+        labels = {
+            'title': _('Cafe name:'),
+            'location': _('Cafe location:'),
+            'opening_time': _('Cafe opening time:'),
+            'closing_time': _('Cafe closing time:'),
+            'website': _('Cafe website/socials (optional):'),
+            'category': _('Category - select one from the drop down menu:'),
+            'content': _('Description - tell us about your experience:'),
+            'featured_image': _('Upload an image of the cafe:'),
+        }
 
 
 class CommentForm(forms.ModelForm):

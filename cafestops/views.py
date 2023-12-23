@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def error_500(request, exception):
+def error_500(request):
     data = {}
     return render(request, 'error_html/500.html', status=500)
 
