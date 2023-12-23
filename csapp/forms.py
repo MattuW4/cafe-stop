@@ -75,6 +75,10 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('body',)
 
+        labels = {
+            'body': _(''),
+        }
+
 # class EditCommentForm(forms.ModelForm):
 #     """
 #     Uses forms to enable users to add comments to blog posts within the post
