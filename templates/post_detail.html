@@ -49,7 +49,7 @@
                     </div>                    
                 </div>
                 <div class="container">
-                    <div class="row-g-8>
+                    <div class="row-g-8">
                         <div class="col-6">
                             <h2> <strong>Cafe overview:</strong></h2>
                             <p>{{ post.content | safe }}</p>
@@ -113,21 +113,25 @@
                 </p>
                 {{ comment.body | linebreaks }}
             </div>
+            <!--- Comment update -->
+            {% if request.user == comment.author %}
+            <a href="{% url 'comment_edit' post.pk comment.pk %}" type="button" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pen"></i> Edit this comment</a>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
-<!--- Comment update -->
+
 <!-- <div class="container">
     <div class="row-g-8">
-        
+    
     </div>
-</div> -->
-<!-- <div>
-    {% if request.user == comment.author %}
+</div>
+<div> -->
+    <!-- {% if request.user == comment.author %}
     <a href="{% url 'comment_delete' post.pk comment.pk %}" type="button" class="btn btn-secondary btn-lg">Delete this comment<i class="fas fa-trash"></i></a>
-    {% endif %}
-</div> -->
+    {% endif %} -->
+<!-- </div> -->
 </section>
 
 {% endblock content %}

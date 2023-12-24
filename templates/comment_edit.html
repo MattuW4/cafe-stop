@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1><strong>Update your comment:</strong></h3>
+    <form method="post" style="margin-top: 1.3em">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-secondary">Submit</button>
+        {% endif %} 
+
+{% endblock %}

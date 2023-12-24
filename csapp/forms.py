@@ -73,20 +73,20 @@ class CommentForm(forms.ModelForm):
     
     class Meta:
         model = Comment
-        fields = ('body',)
+        fields = ('author', 'body',)
 
         labels = {
             'body': _(''),
         }
 
-# class EditCommentForm(forms.ModelForm):
-#     """
-#     Uses forms to enable users to add comments to blog posts within the post
-#     detail view if they are logged in and authenticated.
-#     """
+class EditCommentForm(forms.ModelForm):
+    """
+    Uses forms to enable users to add comments to blog posts within the post
+    detail view if they are logged in and authenticated.
+    """
     
-#     class Meta:
-#         model = Comment
-#         fields = ['author', 'body',]
+    class Meta:
+        model = Comment
+        fields = ['author', 'body',]
 
 

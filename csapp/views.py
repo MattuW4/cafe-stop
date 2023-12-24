@@ -195,38 +195,30 @@ def category_list(request):
     return context
 
 
-# class AddCategory(CreateView):
-#     """
-#     View for adding a category.
-#     """
-#     model = Category
-#     fields = '__all__'
-#     template_name = 'category_add.html'
+class CommentEdit(UserPassesTestMixin, generic.UpdateView):
+    """
+    View for updating/editing a comment.
+    """
+    model = Comment
+    template_name = 'comment_edit.html'
+    form_class = CommentForm
 
-#     def form_valid(self, form):
-#         """Validate form after connecting form author to user"""
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
-
-# class CommentEdit(UserPassesTestMixin, generic.UpdateView):
-#     """
-#     View for updating/editing a comment.
-#     """
-#     model = Comment
-#     template_name = 'comment_edit.html'
-#     form_class = EditCommentForm
+    def post(self, request, slug, *args, **kwargs):
+        post = get_object_or_404(Post, slug=slug)
+        messages.success(self.request, self.success_message)
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
     
-#     def form_valid(self, form):
-#         """Validate form after connecting form author to user"""
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        """Validate form after connecting form author to user"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-#     def test_func(self):
-#         """Test that comment author is the same as logged in user"""
-#         post = self.get_object()
-#         if self.request.user == post.author:
-#             return True
-#         return False
+    def test_func(self):
+        """Test that comment author is the same as logged in user"""
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
 # class CommentDelete(DeleteView):
 #     model = Post
