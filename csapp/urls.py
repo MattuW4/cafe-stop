@@ -12,6 +12,5 @@ urlpatterns = [
     path('category/<category>/', views.SearchCategory.as_view(), name='category_search'),
     path('like/<slug:slug>', views.PostLike.as_view(), name='like_post'),
     path('<slug:slug>/comment/update/<int:pk>', views.CommentEdit.as_view(), name='comment_edit'),
-    # path('add_category', views.AddCategory.as_view(), name='add_category'),    
-    # path('<slug:slug>/comment-delete/<int:pk>', views.CommentDelete.as_view(), name='comment-delete'),
+    path('<slug:slug>/comment/delete/<int:pk>', views.CommentDelete.as_view(), name='comment_delete'),
     ]

@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from csapp.models import Post, Comment, Category
-from .forms import CommentForm, AddPostForm, UpdatePostForm
+from .forms import CommentForm, AddPostForm, UpdatePostForm, EditCommentForm
 
 
 class Index(generic.ListView):
@@ -130,6 +130,7 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
     success_message = 'You updated your post!'
     
     def post(self, request, slug, *args, **kwargs):
+        """Function return user to post detail page on successful post update"""
         post = get_object_or_404(Post, slug=slug)
         messages.success(self.request, self.success_message)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
@@ -195,15 +196,17 @@ def category_list(request):
     return context
 
 
-class CommentEdit(UserPassesTestMixin, generic.UpdateView):
+class CommentEdit(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
     """
     View for updating/editing a comment.
     """
     model = Comment
     template_name = 'comment_edit.html'
     form_class = CommentForm
+    succces_message = 'Your post had been udpated!'
 
     def post(self, request, slug, *args, **kwargs):
+        """Function return user to post detail page on successful post update"""
         post = get_object_or_404(Post, slug=slug)
         messages.success(self.request, self.success_message)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
@@ -220,8 +223,23 @@ class CommentEdit(UserPassesTestMixin, generic.UpdateView):
             return True
         return False
 
-# class CommentDelete(DeleteView):
-#     model = Post
-#     template_name = 'comment_delete.html'
-#     success_url = reverse_lazy('browse')
+class CommentDelete(DeleteView):
+    model = Comment
+    template_name = 'comment_delete.html'
+    success_url = reverse_lazy('browse')
+    success_message = 'Comment has been deleted!'
 
+    def get_success_url(self):
+        slug = self.kwargs['slug']
+        return reverse_lazy('browse', kwargs={'slug': slug})
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(CommentDelete, self).delete(request, *args, **kwargs)
+
+    def test_func(self):
+        """Test that comment author is the same as logged in user"""
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
