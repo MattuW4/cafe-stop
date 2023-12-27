@@ -113,6 +113,5 @@ class Comment(models.Model):
         """Returns the comment with body and name"""
         return f"Comment {self.body} by {self.author}"
 
-
-
+    
 

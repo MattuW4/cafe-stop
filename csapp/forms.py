@@ -75,11 +75,6 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ( 'body',)
 
-        
-    # def __init__(self, author, *args, **kwargs):
-    #     super(CommentForm, self).__init__(*args, **kwargs)
-    #     self.instance.author = author
-
         widgets = {
             'body': forms.Textarea(attrs={
                 'placeholder': 'Get involved in the discussion - post a comment...'
@@ -91,14 +86,5 @@ class CommentForm(forms.ModelForm):
             'body': _(''),
         }
 
-class EditCommentForm(forms.ModelForm):
-    """
-    Uses forms to enable users to add comments to blog posts within the post
-    detail view if they are logged in and authenticated.
-    """
-    
-    class Meta:
-        model = Comment
-        fields = ['author', 'body',]
 
 
