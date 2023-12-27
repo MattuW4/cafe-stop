@@ -197,7 +197,7 @@ def category_list(request):
     return context
 
 
-class CommentDelete(DeleteView):
+class CommentDelete(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, DeleteView):
     model = Comment
     template_name = 'comment_delete.html'
     success_url = reverse_lazy('post_detail')
