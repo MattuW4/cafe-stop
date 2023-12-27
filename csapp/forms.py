@@ -73,9 +73,21 @@ class CommentForm(forms.ModelForm):
     
     class Meta:
         model = Comment
-        fields = ('author', 'body',)
+        fields = ( 'body',)
+
+        
+    # def __init__(self, author, *args, **kwargs):
+    #     super(CommentForm, self).__init__(*args, **kwargs)
+    #     self.instance.author = author
+
+        widgets = {
+            'body': forms.Textarea(attrs={
+                'placeholder': 'Get involved in the discussion - post a comment...'
+            }),
+        }
 
         labels = {
+            
             'body': _(''),
         }
 

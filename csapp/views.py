@@ -85,6 +85,7 @@ class PostDetail(View):
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
+            comment_form.instance.author_id = self.request.user.id
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
@@ -203,11 +204,12 @@ class CommentEdit(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, 
     model = Comment
     template_name = 'comment_edit.html'
     form_class = CommentForm
+    success_url = reverse_lazy('post_detail')
     succces_message = 'Your post had been udpated!'
 
-    def post(self, request, slug, *args, **kwargs):
+    def comment_edit(self, request, slug, *args, **kwargs):
         """Function return user to post detail page on successful post update"""
-        post = get_object_or_404(Post, slug=slug)
+        comment = get_object_or_404(Post, slug=slug)
         messages.success(self.request, self.success_message)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
     
@@ -229,9 +231,11 @@ class CommentDelete(DeleteView):
     success_url = reverse_lazy('browse')
     success_message = 'Comment has been deleted!'
 
-    def get_success_url(self):
-        slug = self.kwargs['slug']
-        return reverse_lazy('browse', kwargs={'slug': slug})
+    def comment_edit(self, request, slug, *args, **kwargs):
+        """Function return user to post detail page on successful post update"""
+        comment = get_object_or_404(Post, slug=slug)
+        messages.success(self.request, self.success_message)
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
