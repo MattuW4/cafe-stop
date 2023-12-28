@@ -73,6 +73,12 @@ body {
     margin-bottom: 0rem !important;
 }
 
+/* Post detail */
+img {
+    border-style: dashed;
+    border-color: whitesmoke;
+}
+
 /* Cards */
 .card-img-top {
     width: 100%;
@@ -89,13 +95,13 @@ body {
     background-color: transparent;
     outline: none;
 }
+
 /* Footer */
 
 footer {
     margin-top: auto;
     text-align: center;
     width: 100%;
-
 }
 
 .footer-media-link {
