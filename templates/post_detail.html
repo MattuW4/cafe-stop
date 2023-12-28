@@ -60,9 +60,9 @@
         </div>
     </div>
     <br>
-    <div class="container d-flex col-12 justify-content-between"
+    <div class="container mt-2 d-flex col-12 gap-5 justify-content-md-between"
         {% if user.is_authenticated %}
-        <div class="d-flex gap-4 flex-md-row col-6 justify-content-md-between">
+        <div >
             <a href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
             <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a> 
         </div>
