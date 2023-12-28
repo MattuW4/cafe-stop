@@ -60,14 +60,11 @@
         </div>
     </div>
     <br>
-    <div class="container">
+    <div class="container d-flex col-12 justify-content-between"
         {% if user.is_authenticated %}
-        <div class="row-g-8">
+        <div class="d-flex gap-4 flex-md-row col-6 justify-content-md-between">
             <a href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
-        </div>
-        <br>
-        <div class="row-g-8">
-            <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-secondary btn-lg"><i class="fas fa-trash"></i> Delete the post</a>        
+            <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a> 
         </div>
         {% endif %}
     </div>

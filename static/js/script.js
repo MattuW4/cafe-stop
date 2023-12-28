@@ -7,17 +7,3 @@ function closeAlerts () {
         alert.close();
     }, 2500);
 };
-
-define('summernote/settings', function () {
-
-    var settings = {
-   
-      version: '0.8.20.0',
-    }
-
-    options: {
-
-        width: 50%;                // set editor width
-  
-        height: 10rem;                 // set editor height, ex) 300
-}
