@@ -14,7 +14,7 @@
                 {% if "placeholder" in post.featured_image.url %}
                 <img aria-label="Placeholder image for post" src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"/>
                 {% else %}
-                <img aria-label="Featured image for post" src=" {{ post.featured_image.url }}"/>
+                <img alt="Featured image for post" src=" {{ post.featured_image.url }}"/>
                 {% endif %}
             </div>
             <!-- Post details -->
