@@ -19,10 +19,29 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: rgb(196, 187, 175);
 
 }
 
 /* Nav bar styling */
+
+.navbar {
+    background-color: rgb(37, 89, 87);
+    
+    color: whitesmoke;
+}
+.navbar-brand {
+    color: whitesmoke;
+}
+
+.navbar-toggler {
+    color: whitesmoke;
+}
+
+.nav-link {
+    color: whitesmoke;
+}
+
 .nav-item {
     margin-right: 10px;
     display: flex;
@@ -47,6 +66,7 @@ body {
 #dropdown-button {
     background-color: transparent;
     outline: none;
+    color: whitesmoke;
 }
 
 /* Cards */
