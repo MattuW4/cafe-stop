@@ -69,6 +69,10 @@ body {
     color: whitesmoke;
 }
 
+#logged-in {
+    margin-bottom: 0rem !important;
+}
+
 /* Cards */
 .card-img-top {
     width: 100%;

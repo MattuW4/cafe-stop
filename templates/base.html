@@ -113,7 +113,7 @@
               </a>
             </li>
             <li class="nav-item">
-                <p>(Logged in as: {{ request.user.username|title }})</p>
+                <p id="logged-in">(Logged in as: {{ request.user.username|title }})</p>
             </li>
             {% else %}
             <li class="nav-item">
