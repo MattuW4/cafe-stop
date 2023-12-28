@@ -67,6 +67,8 @@
             <div class="col-md-7">
                 <!-- Description -->
                 <h2> <strong>Cafe description:</strong></h2>
+            </div>
+            <div class="col-md-7" id="description-box">
                 <p>{{ post.content | safe }}</p>
             </div>
             <div class="col-md-5">
@@ -95,8 +97,8 @@
                     </div>
                     <div class="comment-container overflow-auto">
                         {% for comment in comments %}
-                        <div class="comments" style="padding: 10px">
-                            <p class="font-weight-bold">
+                        <div class="comments">
+                            <p  class="font-weight-bold">
                                 <span class="text-muted font-weight-normal">
                                     {{ comment.created_on }}
                                     {{ comment.author|title }} wrote:

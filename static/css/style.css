@@ -96,6 +96,17 @@ img {
     outline: none;
 }
 
+#description-box {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    max-height: 24rem;
+}
+
+.comments {
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
 /* Footer */
 
 footer {
