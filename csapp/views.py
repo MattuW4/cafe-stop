@@ -94,8 +94,9 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-        else:
-            comment_form = CommentForm()
+            messages.success(request, 'Your comment has been submitted for approval!')
+
+            return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
         return render(
             request,
