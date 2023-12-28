@@ -134,12 +134,6 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
     template_name = 'post_update.html'
     form_class = UpdatePostForm
     success_message = 'You updated your post!'
-    
-    # def post(self, request, slug, *args, **kwargs):
-    #     """Function return user to post detail page on successful post update"""
-    #     post = get_object_or_404(Post, slug=slug)
-    #     messages.success(self.request, self.success_message)
-    #     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
@@ -188,7 +182,6 @@ class SearchCategory(generic.ListView):
         }
         return content
 
-
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
         form.instance.author = self.request.user
@@ -202,7 +195,7 @@ def category_list(request):
     return context
 
 
-class CommentDelete(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, DeleteView):
+class CommentDelete(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
     model = Comment
     template_name = 'comment_delete.html'
     success_url = reverse_lazy('post_detail')

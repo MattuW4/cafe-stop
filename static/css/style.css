@@ -89,13 +89,13 @@ a:-webkit-any-link {
 }
 
 /* Hero image style */
-#hero-image {
+/* #hero-image {
     height: 600px;
     width: 100%;
     background-size: contain;
     background: no-repeat center;
     background-attachment: fixed;
-}
+} */
 
 /* Post detail image */
 img {
