@@ -130,11 +130,11 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
     form_class = UpdatePostForm
     success_message = 'You updated your post!'
     
-    def post(self, request, slug, *args, **kwargs):
-        """Function return user to post detail page on successful post update"""
-        post = get_object_or_404(Post, slug=slug)
-        messages.success(self.request, self.success_message)
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    # def post(self, request, slug, *args, **kwargs):
+    #     """Function return user to post detail page on successful post update"""
+    #     post = get_object_or_404(Post, slug=slug)
+    #     messages.success(self.request, self.success_message)
+    #     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
     def form_valid(self, form):
         """Validate form after connecting form author to user"""

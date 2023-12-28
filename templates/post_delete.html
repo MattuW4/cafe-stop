@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-3 col-sm-6">
-            <a href="{% url 'browse' %}" class="btn btn-light">Back to browse Page</a>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning">Here by mistake? Head back to safety.</a>
         </div>
     </div>
     <div class="row justify-content-center mt-5">

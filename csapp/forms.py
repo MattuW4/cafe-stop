@@ -12,8 +12,7 @@ class AddPostForm(forms.ModelForm):
     Uses forms to enable logged in and authenticated users to create posts and
     add to browse.html.
     """
-    # website = forms.CharField(required=False)
-
+    
     class Meta:
         model = Post
         fields = ['title', 'location', 'opening_time', 'closing_time',
