@@ -94,6 +94,7 @@ a:-webkit-any-link {
 
 #register-link {
     text-decoration: underline;
+    text-decoration-thickness: 3px;
 }
 
 #register-link:hover {
@@ -146,6 +147,21 @@ a:-webkit-any-link {
     background-color: whitesmoke;
     border-radius: 10px;
 }
+
+#category-link {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+#category-link:hover {
+    text-decoration: none;
+    border-bottom: 3px black solid;
+}
+
+#content-spacing {
+        letter-spacing: 0.08rem;
+}
+
 
 /* Footer */
 

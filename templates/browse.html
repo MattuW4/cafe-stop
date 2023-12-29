@@ -29,7 +29,7 @@
                 {% endif %}
               </div>
               <div class="image-flash">
-                <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
                 <h2 class="card-title">{{ post.title }}</h2></a>
                 <p class="author">Posted by: {{ post.author|title }}</p>
                 <hr />
