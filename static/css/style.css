@@ -54,6 +54,10 @@ a:-webkit-any-link {
     font-size: 1.4em;
 }
 
+.dropdown-menu {
+    --bs-dropdown-bg: #255957;
+}
+
 .n.container-fluid {
     padding-right: 1rem;
     display: flex;
