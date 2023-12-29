@@ -3,33 +3,37 @@
 {% block content %}
 
 <!-- Hero image and call to arms -->
-
-<section id="hero" class="container d-flex align-items-center ">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="py-4 py-md-0 w-100">
-        <div  class="col-md-6 "> 
-            <img id="hero-image" src="{% static 'images/hero-logo.png' %}" alt="Hero image logo of cyclist searching phone"/>
+<section>
+    <div class="container">
+        <div class="row">
+            <!-- Post image -->
+            <div class="col-md-7 text-center mt-4">
+                <img id="hero-image" src="{% static 'images/hero-logo.png' %}" alt="Hero image logo of cyclist searching phone"/>
+            </div>
+            <!-- Post details -->
+            <div class="col-md-5 mt-4">
+                <div>
+                    <h1 class="pb-0 pb-lg-1 text-center">Cafe stops</h1>
+                    <p class="lead text-center ">
+                        This is a place to share your favourite cafe stops from your bike rides.
+                        Whether that be for a cuppa, <em>second breakfast</em> or on those days
+                        when you just need a respite from the elements! Discover cafes you
+                        didn't know about, share suggestions with friends or pick somewhere
+                        new on a favourite route
+                        <i class="fa-solid fa-bicycle"></i>
+                    </p>
+                </div>
+                <div class="d-flex gap-2 ">
+                    <p class="lead text-center">
+                        {% if user.is_authenticated %}
+                        <a id="browse-home-link" href="{% url 'browse' %}">Browse the cafes here...</a>
+                        {% else %}
+                        Sign up for a free account  <a aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a> and join the community today!
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
         </div>
-        <h1 class="pb-0 pb-lg-1 text-center">Cafe stops</h1>
-        <p class="lead text-center ">
-            This is a place to share your favourite cafe stops from your bike rides.
-            Whether that be for a cuppa, <em>second breakfast</em> or on those days
-            when you just need a respite from the elements! Discover cafes you
-            didn't know about, share suggestions with friends or pick somewhere
-            new on a favourite route
-            <i class="fa-solid fa-bicycle"></i>
-        </p>
     </div>
-    <div class="py-4 py-md-0 w-100">
-      <p class="lead text-center">
-        {% if user.is_authenticated %}
-        <a id="browse-home-link" href="{% url 'browse' %}">Browse the cafes here...</a>
-        {% else %}
-        Sign up for a free account  <a aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a> and join the community today!
-        {% endif %}
-      </p>
-    </div>
-  </div>
 </section>
-
 {% endblock %}
