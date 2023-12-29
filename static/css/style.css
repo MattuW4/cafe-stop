@@ -174,7 +174,6 @@ a:-webkit-any-link {
 
 #like-btn-before {
     color: rgb(247, 52, 52);
-    border-bottom: rgb(247, 52, 52) solid 2px;
 }
 
 #like-btn-before:hover {
@@ -183,7 +182,6 @@ a:-webkit-any-link {
 
 #like-btn-after {
     color: rgb(247, 52, 52);
-    border-bottom: rgb(247, 52, 52) ;
 }
 
 #like-btn-after:hover {

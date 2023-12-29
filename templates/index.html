@@ -26,7 +26,7 @@
                 <div class="d-flex gap-2 ">
                     <p class="lead text-center">
                         {% if user.is_authenticated %}
-                        Browse the cafes<a id="browse-home-link" href="{% url 'browse' %}"> here...</a>
+                        Browse the cafes <a id="register-link" type="button" aria-label="Link to browse page" href="{% url 'browse' %}"> here...</a>
                         {% else %}
                         Sign up for a free account  <a id="register-link" type="button" aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a> and join the community today!
                         {% endif %}

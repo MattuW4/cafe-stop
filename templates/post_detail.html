@@ -26,7 +26,6 @@
                 <div>
                     <p>
                         {% if user.is_authenticated %}
-                        {% if user != post.author %}
                         <strong><form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
                             {% csrf_token %}
                             {% if liked %} 
@@ -37,14 +36,7 @@
                         </form>
                         </strong>
                         {% else %}
-                        {% if user == post.author %}
-                        {% if liked %} 
-                        <span><strong>Rating: <i class="far fa-heart" id="like-btn-before"></i> {{ post.number_of_likes }}</strong></span>
-                        {% else %}
-                        <span><strong>Rating: <i class="far fa-heart" id="like-btn-after"></i> {{ post.number_of_likes }}</strong></span>
-                        {% endif %}
-                        {% endif %}
-                        {% endif %}
+                        <span><strong>Rating: <i class="fas fa-heart" id="like-btn-after"></i> {{ post.number_of_likes }}</strong></span>
                         {% endif %}
                     </p>
                     <p><strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
