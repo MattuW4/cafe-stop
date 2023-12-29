@@ -29,15 +29,21 @@
                         {% if user != post.author %}
                         <strong><form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
                             {% csrf_token %}
-                            {% if liked %}
-                            Rating: <button class="btn-lg like-button" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> {{ post.number_of_likes }}
+                            {% if liked %} 
+                            Rating: <button class="btn-lg like-button" id="like-btn-after" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> {{ post.number_of_likes }}
                             {% else %}
-                            Rating: <button class="btn-lg like-button" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> {{ post.number_of_likes }}
+                            Rating: <button class="btn-lg like-button" id="like-btn-before" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> {{ post.number_of_likes }}
                             {% endif %}
                         </form>
                         </strong>
                         {% else %}
-                        <span class="text-secondary"><strong>Rating: <i class="far fa-heart"></i>{{ post.number_of_likes }}</strong></span>
+                        {% if user == post.author %}
+                        {% if liked %} 
+                        <span><strong>Rating: <i class="far fa-heart" id="like-btn-before"></i> {{ post.number_of_likes }}</strong></span>
+                        {% else %}
+                        <span><strong>Rating: <i class="far fa-heart" id="like-btn-after"></i> {{ post.number_of_likes }}</strong></span>
+                        {% endif %}
+                        {% endif %}
                         {% endif %}
                         {% endif %}
                     </p>

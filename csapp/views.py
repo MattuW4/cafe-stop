@@ -38,6 +38,11 @@ class PostLike(LoginRequiredMixin, View):
             post.likes.add(request.user)
         
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    
+    def form_valid(self, form):
+        """Validate form after connecting form author to user"""
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class PostDetail(View):

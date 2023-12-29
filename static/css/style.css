@@ -131,6 +131,10 @@ a:-webkit-any-link {
     text-align: center;
 }
 
+#card-like {
+    color: rgb(247, 52, 52);
+}
+
 /* Post detail page */
 .like-button {
     background-color: transparent;
@@ -160,6 +164,24 @@ a:-webkit-any-link {
 
 #content-spacing {
         letter-spacing: 0.08rem;
+}
+
+#like-btn-before {
+    color: rgb(247, 52, 52);
+    border-bottom: rgb(247, 52, 52) solid 2px;
+}
+
+#like-btn-before:hover {
+    transform: scale(1.6);
+}
+
+#like-btn-after {
+    color: rgb(247, 52, 52);
+    border-bottom: rgb(247, 52, 52) ;
+}
+
+#like-btn-after:hover {
+    transform: scale(1.6);
 }
 
 
