@@ -26,13 +26,28 @@ class TestModels(TestCase, Client):
             status=0,
             category=self.category
         )
+
+        self.comment = Comment.objects.create(
+            post=self.post,
+            author=self.user,
+            body='test comment'
+        )
         
-        # self.assertEquals(str(post), 'Test title')
-        # self.assertTrue(isinstance(post, Post))
+    def test_post_model_str(self):
+        """Test the __str__ method for post"""
+        self.assertEqual(self.post.__str__(), self.post.title)
+
+    def test_comment_model_str(self):
+        """Test the __str__ method for comment"""
+        self.assertEqual(
+            self.comment.__str__(),
+            f'Comment {self.comment.body} by {self.comment.author}'
+            )
+
     
     def test_post_defaults(self):
         """Test default values"""
         self.assertTrue(self.post.opening_time == 0)
         self.assertTrue(self.post.closing_time == 0)
         self.assertTrue(self.post.status == 0)
-        # self.assertTrue(self.comment.approved)
+        self.assertTrue(self.comment.approved == False)
