@@ -88,17 +88,8 @@ a:-webkit-any-link {
     color: whitesmoke;
 }
 
-/* Hero image style */
-/* #hero-image {
-    height: 600px;
-    width: 100%;
-    background-size: contain;
-    background: no-repeat center;
-    background-attachment: fixed;
-} */
-
-/* Post detail image */
-img {
+/* Post, browse and category image style */
+.image-border {
     border-style: dashed;
     border-color: whitesmoke;
 }
