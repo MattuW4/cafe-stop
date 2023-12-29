@@ -6,9 +6,11 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-3 col-sm-6">
+            <!-- Button to return to oring page in case of wrong navigation -->
             <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning">Here by mistake? Head back to safety.</a>
         </div>
     </div>
+    <!-- Post delete feature -->
     <div class="row justify-content-center mt-5">
         <div class="col-md-5 col-sm-12">
             <h3>Delete: {{ post.title }}</h3>

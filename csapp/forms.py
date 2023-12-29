@@ -45,7 +45,8 @@ class AddPostForm(forms.ModelForm):
 
 class UpdatePostForm(forms.ModelForm):
     """
-    Used forms and UpdatePost view to enable a user to edit own blog post.
+    Uses forms and UpdatePost view to enable a user to edit own blog post.
+    Requires user to be logged in and owner.
     """
     class Meta:
         model = Post

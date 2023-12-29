@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', closeAlerts);
 
+// Timer dor dismissal of popup messages
 function closeAlerts () {
     setTimeout(function () {
         let messages = document.getElementById("msg");

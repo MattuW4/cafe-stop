@@ -12,6 +12,7 @@ from .forms import CommentForm, AddPostForm, UpdatePostForm
 
 
 class Index(generic.ListView):
+    """Returns 3 posts ranked for top number of comments on site"""
     model = Post
     queryset = Post.objects.filter(status=1).annotate(like_counts=Count('likes')).order_by('-like_counts')[:3]
     template_name = 'index.html'
@@ -19,8 +20,9 @@ class Index(generic.ListView):
 
 class PostList(generic.ListView):
     """
-    View for displying all posts on browse page, filtering by approved
-    and ordered by descending date to display 6 blog posts per page.
+    View to return all posts that have been approved by admin.
+    Ordered by descending date to display 6 blog posts per page.
+    All users can access the page, whether authenticated or not.
     """
     model = Post
     queryset = Post.objects.filter(status=1).order_by('-created_on')
@@ -29,7 +31,10 @@ class PostList(generic.ListView):
     
 
 class PostLike(LoginRequiredMixin, View):
-
+    """
+    View for like/unlike blog post. User returns/remains on
+    same page post interaction. Fields are pre-populated.
+    """
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
 
@@ -49,12 +54,17 @@ class PostLike(LoginRequiredMixin, View):
 class PostDetail(View):
     """
     View to post/get post detail to render on browse page,
-    filtering posts by approved and ordered by most recent
-    date/time.
+    category page and filtering posts by approved and 
+    ordered by most recent addition. Like or comment feature
+    available. Features and use dependent upon user login status.
     """
     
     
     def get(self, request, slug, *args, **kwargs):
+        """
+        Get method to retrieve post detail and render. If statement
+        to determine if user has already liked a post.
+        """
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by('-created_on')
@@ -73,13 +83,13 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             }
         )
-    """
-    View to allow authenticated users to comment on posts.
-    If statement checks if a user is logged in, input is
-    valid and then authorises by admin to post."
-    """
+    
 
     def post(self, request, slug, *args, **kwargs):
+        """
+        Post method for validating comment input to save and then
+        re-load detail page with success message for user.
+        """
         if not self.request.user.is_authenticated:
             return redirect(
                 reverse('login.html')
@@ -119,7 +129,8 @@ class PostDetail(View):
 
 class AddPost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """
-    View for adding a post.
+    View to enable user to add blog post provided they are logged in.
+    Feedback success message on submission.
     """
     model = Post
     form_class = AddPostForm
@@ -134,7 +145,8 @@ class AddPost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
 
 class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, generic.UpdateView):
     """
-    View for updating/editing a post.
+    View to enable user to update blog post provided they are logged in
+    and owner of post. Feedback success message on submission.
     """
     model = Post
     template_name = 'post_update.html'
@@ -155,6 +167,10 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
 
 
 class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
+    """
+    View to enable user to delete blog post provided they are logged
+    in and owner of post. Feedback success message on deletion.
+    """
     model = Post
     template_name = 'post_delete.html'
     success_message = 'You deleted your post!'
@@ -174,7 +190,8 @@ class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, 
 
 class SearchCategory(generic.ListView):
     """
-    View for viewing categories.
+    View to allow users to search categories of posts.
+    All users have access.
     """
     model = Category
     template_name = 'categories.html'

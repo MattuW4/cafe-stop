@@ -7,7 +7,7 @@
 <section>
     <div class="container px-5">
         <div class="row">
-            <!-- Post image -->
+            <!-- Hero image -->
             <div class="col-md-7 text-center mt-4">
                 <img id="hero-image" src="https://res.cloudinary.com/deoxxigyw/image/upload/v1703886675/result_fkaizq.png" alt="Hero image logo of cyclist searching phone"/>
             </div>
@@ -26,6 +26,7 @@
                 </div>
                 <div class="d-flex gap-2 ">
                     <p class="lead text-center">
+                        <!-- If statement for authentication and alternating functionality -->
                         {% if user.is_authenticated %}
                         Browse the cafes <a id="register-link" type="button" aria-label="Link to browse page" href="{% url 'browse' %}"> here</a> or why not try out the category search feature in the nav bar!
                         {% else %}
@@ -39,7 +40,8 @@
 </section>
 <section>
     <div class="container-fluid px-5">
-        <h2>Here are some popular cafes:</h2>
+        <!-- Display of 3 cards for the posts with highest ranked likes on the site -->
+        <h2>Our favourite cafes at the moment:</h2>
         <div class="row">
           <!-- Cafe catalogue column -->
           <div class="col-12 mt-3 ">
@@ -53,13 +55,13 @@
                       {% if "placeholder" in post.featured_image.url %}
                       <img
                         class="card-img-top image-border"
-                        aria-label="Placeholder image for post"
+                        alt="Placeholder image for post"
                         src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
                       />
                       {% else %}
                       <img
                         class="card-img-top image-border"
-                        aria-label="Featured image for post"
+                        alt="Featured image for post"
                         src=" {{ post.featured_image.url }}"
                       />
                       {% endif %}

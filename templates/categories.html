@@ -8,6 +8,7 @@
            <div class="col-12 mt-3 ">
                <h1 class="pt-3"> A list of cafes in '{{ catalist.cata }}' category </h1>
            </div>
+           <!-- For loop to display cards in grid -->
            {% for post in catalist.posts %}
            <div class="col-md-4">
                <div class="card mb-3" box-shadow>
@@ -17,13 +18,13 @@
                      {% if "placeholder" in post.featured_image.url %}
                      <img
                        class="card-img-top image-border"
-                       aria-label="Placeholder image for post"
+                       alt="Placeholder image for post"
                        src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
                      />
                      {% else %}
                      <img
                        class="card-img-top image-border"
-                       aria-label="Featured image for post"
+                       alt="Featured image for post"
                        src=" {{ post.featured_image.url }}"
                      />
                      {% endif %}

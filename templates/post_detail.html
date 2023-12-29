@@ -12,7 +12,7 @@
             <!-- Post image -->
             <div class="col-md-7 text-center mt-4">
                 {% if "placeholder" in post.featured_image.url %}
-                <img class="image-border" aria-label="Placeholder image for post" src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"/>
+                <img class="image-border" alt="Placeholder image for post" src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"/>
                 {% else %}
                 <img class="image-border" alt="Featured image for post" src=" {{ post.featured_image.url }}"/>
                 {% endif %}
@@ -26,6 +26,7 @@
                 <div>
                     <p>
                         {% if user.is_authenticated %}
+                        <!-- Like feature that is interactive when logged in and authenticated -->
                         <strong><form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
                             {% csrf_token %}
                             {% if liked %} 
@@ -46,6 +47,7 @@
                 <div>
                     <div class="d-flex gap-2">
                         {% if user.is_authenticated %}
+                        <!-- Buttons to update or delete a post if owner and logged in -->
                         <div class="container mt-2 d-flex flex-column col-12 gap-5 justify-content-md-between flex-md-row">
                             <a href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
                             <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
@@ -84,6 +86,7 @@
                         <p class="alert alert-success" role="alert">Your comment has been sent for approval</p>
                         {% else %}
                         {% if user.is_authenticated %}
+                        <!-- If logged in and authenticated then user can add a post -->
                         <h3><strong>Share your thoughts:</strong></h3>
                         <p>Posting as: {{ user.username|title }}</p>
                         <form method="post" style="margin-top: 1.3em">
@@ -104,9 +107,6 @@
                             </p>
                             {{ comment.body | linebreaks }}
                         </div>
-                        {% if request.user == comment.author %}
-                        <a href="{% url 'comment_delete' post.pk comment.pk %}" type="button" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pen"></i> Delete this comment</a>
-                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>

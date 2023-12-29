@@ -6,6 +6,7 @@
 {% if user.is_authenticated %}
 
 <div class="container">
+    <!-- Update post feature -->
     <h1 class="pt-3">Update post</h1>
     <p>You can update your post below:</p>
     <form method="POST" enctype="multipart/form-data">
@@ -15,6 +16,7 @@
             <button type="submit" class="btn btn-secondary btn-lg">Update</button>
         </div>
         <div class="col-md-3 col-sm-6">
+            <!-- Button to return to oring page in case of wrong navigation -->
             <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-sec btn-lg m-1">Here by mistake? Go back</a>
         </div>
     </form>
