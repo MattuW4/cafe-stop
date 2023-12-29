@@ -7,12 +7,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from csapp.models import Post, Comment, Category
+from django.db.models import Count
 from .forms import CommentForm, AddPostForm, UpdatePostForm
 
 
 class Index(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    queryset = Post.objects.filter(status=1).annotate(like_counts=Count('likes')).order_by('-like_counts')[:3]
     template_name = 'index.html'
 
 

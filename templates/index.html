@@ -36,4 +36,50 @@
         </div>
     </div>
 </section>
+<section>
+    <div class="container-fluid">
+        <h2>Here are some popular cafes:</h2>
+        <div class="row">
+          <!-- Cafe catalogue column -->
+          <div class="col-12 mt-3 ">
+            <div class="row g-3">
+              {% for post in post_list %}
+              <div class="col-md-4">
+                <div class="card mb-3">
+                  <!-- Card body & detail -->
+                  <div class="card-body">
+                    <div class="image-container ">
+                      {% if "placeholder" in post.featured_image.url %}
+                      <img
+                        class="card-img-top image-border"
+                        aria-label="Placeholder image for post"
+                        src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
+                      />
+                      {% else %}
+                      <img
+                        class="card-img-top image-border"
+                        aria-label="Featured image for post"
+                        src=" {{ post.featured_image.url }}"
+                      />
+                      {% endif %}
+                    </div>
+                    <div class="image-flash">
+                        <hr />
+                      <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
+                      <h2 class="card-title">{{ post.title }}</h2></a>
+                      <p>Location: {{ post.location }}</p>
+                      <p id="card-info" class="card-text text-muted h6">
+                        <i class="fa-solid fa-heart" id="card-like"></i> {{ post.number_of_likes }} 
+                      </p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">{% endif %} {% endfor %}</div>
+          </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
