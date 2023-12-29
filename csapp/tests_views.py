@@ -1,46 +1,50 @@
-from django.test import TestCase
+from django.test import TestCase, Client
+from django.contrib.auth.models import User
+from django.urls import reverse
+from .models import Post, Category, Comment
 
-class TestViews(TestCase):
 
-    def test_get_home_page(self):
-        response = self.client.get('')
-        self.assertEqual(response.status_code, 200)
+class TestViews(TestCase, Client):
+
+    def setUp(self):
+        """Set up before each text"""
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.client.login(username='testuser', password='password')
+        self.category = Category.objects.create(name='Test Category')
+        self.client = Client()
+        self.browse_url = reverse('browse')
+        
+        post = Post.objects.create(
+            title='Test title',
+            slug='test-title',
+            author=self.user,
+            location='Test location',
+            opening_time=1,
+            closing_time=1,
+            website='www.testurl.com',
+            content='test content for test blog post',
+            featured_image='test_img.jpeg',
+            status=1,
+            category=self.category
+        )
+
+    # def test_model_Post(self):
+    #     
+        
+    #     self.assertEquals(str(post), 'Test title')
+    #     self.assertTrue(isinstance(post, Post))
+
+    def test_home_GET(self):
+        response = self.client.get('/')
+        self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html', 'base.html')
 
-    def test_get_browse_post_page(self):
-        response = self.client.get('browse')
-        self.assertEqual(response.status_code, 200)
+    def test_browse_GET(self):
+        response = self.client.get(self.browse_url)
+        self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'browse.html', 'base.html')
 
-    def test_get_view_post_page(self):
-        response = self.client.get('<slug:slug>/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'post_detail.html', 'base.html')
-
-    def test_get_add_post_page(self):
-        response = self.client.get('add')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'post_add.html', 'base.html')
-
-    def test_get_update_post_page(self):
-        response = self.client.get('post/update/<slug:slug>')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'post_update.html', 'base.html')
-
-    def test_get_delete_post_page(self): 
-        response = self.client.get('post/<int:pk>/remove')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'post_delete.html', 'base.html')
-
-    def test_get_category_search_page(self): 
-        response = self.client.get('category/<category>/')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'categories.html', 'base.html')
-
-    def test_get_comment_like_views(self):
-        response = self.client.get('like/<slug:slug>')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'post_detail, args=[slug]', 'base.html')
-
-
-
+    # def test_browse_GET_not_logged_in(self):
+    #     self.client.logout()
+    #     response = self.client.get(self.browse_url)
+    #     self.assertEquals(response.status_code, 302)

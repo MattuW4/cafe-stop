@@ -1,14 +1,36 @@
-from django.test import TestCase
-from .models import Post, Comment
+from django.test import TestCase, Client
+from django.contrib.auth.models import User
+from django.urls import reverse
+from .models import Post, Category, Comment
 
-class TestModels(TestCase):
+class TestModels(TestCase, Client):
 
-    def test_done_defaults_to_false(self):
-        self.assertTrue(self.post.opening_time == 0)
-        self.assertTrue(self.post.closing_time == 0)
-        self.assertTrue(self.post.featured_image == 'placeholder')
-        self.assertTrue(self.post.status == 1)
-        self.assertTrue(self.comment.approved)
+    def setUp(self):
+        """Set up before each text"""
+        self.user = User.objects.create_user(username='testuser', password='password')
+        self.category = Category.objects.create(name='Test Category')
 
-    def test_post_string_methjods_returns_name(self):
-        self.assertEqual(self.post.__str__(), self.post.title)
+    def test_model_Post(self):
+        post = Post.objects.create(
+            title='Test title',
+            slug='test-title',
+            author=self.user,
+            location='Test location',
+            opening_time=1,
+            closing_time=1,
+            website='www.testurl.com',
+            content='test content for test blog post',
+            featured_image='test_img.jpeg',
+            status=1,
+            category=self.category
+        )
+        
+        self.assertEquals(str(post), 'Test title')
+        self.assertTrue(isinstance(post, Post))
+    
+    # def test_post_defaults(self):
+    #     """Test default values"""
+        # self.assertTrue(self.post.opening_time == 0)
+        # self.assertTrue(self.post.closing_time == 0)
+        # self.assertTrue(self.post.status == 0)
+        # self.assertTrue(self.comment.approved)

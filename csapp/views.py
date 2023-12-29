@@ -201,24 +201,3 @@ def category_list(request):
     return context
 
 
-# class CommentDelete(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
-#     model = Comment
-#     template_name = 'comment_delete.html'
-#     success_url = reverse_lazy('post_detail')
-#     success_message = 'Comment has been deleted!'
-
-#     def get_success_url(self):
-#         """Success url for post associated with comment"""
-#         slug = self.kwargs['slug']
-#         return reverse_lazy('post_detail', kwargs={'slug': slug})
-
-#     def delete(self, request, *args, **kwargs):
-#         messages.success(self.request, self.success_message)
-#         return super(CommentDelete, self).delete(request, *args, **kwargs)
-
-#     def test_func(self):
-#         """Test that comment author is the same as logged in user"""
-#         post = self.get_object()
-#         if self.request.user == post.author:
-#             return True
-#         return False

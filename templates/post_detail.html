@@ -104,10 +104,6 @@
                             </p>
                             {{ comment.body | linebreaks }}
                         </div>
-                        <!--- Comment update -->
-                        <!-- {% if request.user == comment.author %}
-                        {% endif %} -->
-                        <!--- Comment delete -->
                         {% if request.user == comment.author %}
                         <a href="{% url 'comment_delete' post.pk comment.pk %}" type="button" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-pen"></i> Delete this comment</a>
                         {% endif %}
