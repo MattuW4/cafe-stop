@@ -13,6 +13,7 @@ class TestModels(TestCase, Client):
         self.category = Category.objects.create(name='Test Category')
         self.user.save()
         
+        """Post demo model"""
         self.post = Post.objects.create(
             title='Test title',
             slug='test-title',
@@ -26,7 +27,7 @@ class TestModels(TestCase, Client):
             status=0,
             category=self.category
         )
-
+        """Comment demo model"""
         self.comment = Comment.objects.create(
             post=self.post,
             author=self.user,

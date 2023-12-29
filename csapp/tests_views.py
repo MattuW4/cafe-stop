@@ -13,6 +13,7 @@ class TestViews(TestCase, Client):
         self.client.login(username='testuser', password='password')
         self.category = Category.objects.create(name='Test Category')
         
+        """Post demo model"""
         self.post = Post.objects.create(
             title='Test title',
             slug='test-title',
@@ -27,11 +28,19 @@ class TestViews(TestCase, Client):
             category=self.category
         )
 
+        """Comment demo model"""
+        self.comment = Comment.objects.create(
+            post=self.post,
+            author=self.user,
+            body='test comment'
+        )
+
         """Urls for test reverses"""
         self.browse_url = reverse('browse')
         self.add_post_url = reverse('add')
         self.update_post_url = reverse('update', args=[self.post.slug])
         self.delete_post_url = reverse('delete', args=[self.post.id])
+        self.post_comment_url = reverse('post_detail', args=[self.post.slug])
         
     def test_home_GET(self):
         """Test to check home page is accessible when not logged in"""
@@ -109,6 +118,13 @@ class TestViews(TestCase, Client):
         response = self.client.delete(self.delete_post_url)
         self.assertEquals(response.status_code, 302)
         self.assertEquals(Post.objects.count(), 0)
+
+    def test_post_comment(self):
+        """Test post commenting feature"""
+        response = self.client.post(self.post_comment_url, {
+            'body': 'test comment',
+            })
+        self.assertEquals(Comment.objects.last().body, 'test comment')
 
       
 
