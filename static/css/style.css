@@ -28,6 +28,12 @@ a:-webkit-any-link {
     color: whitesmoke;
 }
 
+.page-link {
+    color: whitesmoke;
+    background-color: #255957;
+}
+
+
 /* Nav bar styling */
 
 .navbar {
