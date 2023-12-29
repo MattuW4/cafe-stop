@@ -41,6 +41,7 @@ class TestViews(TestCase, Client):
         self.update_post_url = reverse('update', args=[self.post.slug])
         self.delete_post_url = reverse('delete', args=[self.post.id])
         self.post_comment_url = reverse('post_detail', args=[self.post.slug])
+        self.category_view_url = reverse('category_search', args=[self.category.name])
         
     def test_home_GET(self):
         """Test to check home page is accessible when not logged in"""
@@ -126,6 +127,11 @@ class TestViews(TestCase, Client):
             })
         self.assertEquals(Comment.objects.last().body, 'test comment')
 
+    def test_get_category_view(self):
+        """ Test Category page retrieval and template usage """
+        response = self.client.get(self.category_view_url)            
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'categories.html', 'base.html')
       
 
 
