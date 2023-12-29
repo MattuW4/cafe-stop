@@ -1,53 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="container-fluid">
-  <h1>Browse the full collection of cafes below</h1>
-  <p>Most recent posts are displayed first</p>
-  <div class="row">
-    <!-- Cafe catalogue column -->
-    <div class="col-12 mt-3 ">
-      <div class="row g-3">
-        {% for post in post_list %}
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <!-- Card body & detail -->
-            <div class="card-body">
-              <div class="image-container ">
-                {% if "placeholder" in post.featured_image.url %}
-                <img
-                  class="card-img-top image-border"
-                  aria-label="Placeholder image for post"
-                  src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
-                />
-                {% else %}
-                <img
-                  class="card-img-top image-border"
-                  aria-label="Featured image for post"
-                  src=" {{ post.featured_image.url }}"
-                />
-                {% endif %}
+<section >
+    <div class="container-fluid">
+        <h1 class="pt-3">Browse the full collection of cafes below</h1>
+        <p>Most recent posts are displayed first</p>
+        <div class="row">
+          <!-- Cafe catalogue column -->
+          <div class="col-12 mt-3 ">
+            <div class="row g-3">
+              {% for post in post_list %}
+              <div class="col-md-4">
+                <div class="card mb-3">
+                  <!-- Card body & detail -->
+                  <div class="card-body">
+                    <div class="image-container ">
+                      {% if "placeholder" in post.featured_image.url %}
+                      <img
+                        class="card-img-top image-border"
+                        aria-label="Placeholder image for post"
+                        src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
+                      />
+                      {% else %}
+                      <img
+                        class="card-img-top image-border"
+                        aria-label="Featured image for post"
+                        src=" {{ post.featured_image.url }}"
+                      />
+                      {% endif %}
+                    </div>
+                    <div class="image-flash">
+                      <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
+                      <h2 class="card-title">{{ post.title }}</h2></a>
+                      <p class="author">Posted by: {{ post.author|title }}</p>
+                      <hr />
+                      <p id="card-info" class="card-text text-muted h6">
+                      {{ post.created_on }} <strong class="text-secondary">
+                          <i class="far fa-comments"></i> {{ post.comments.count }} |
+                          <i class="fa-solid fa-heart" id="card-like"></i> {{ post.number_of_likes }}
+                      </strong>| Location: {{ post.location }}
+                      </p>
+                  </div>
+                  </div>
+                </div>
               </div>
-              <div class="image-flash">
-                <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
-                <h2 class="card-title">{{ post.title }}</h2></a>
-                <p class="author">Posted by: {{ post.author|title }}</p>
-                <hr />
-                <p id="card-info" class="card-text text-muted h6">
-                {{ post.created_on }} <strong class="text-secondary">
-                    <i class="far fa-comments"></i> {{ post.comments.count }} |
-                    <i class="fa-solid fa-heart" id="card-like"></i> {{ post.number_of_likes }}
-                </strong>| Location: {{ post.location }}
-                </p>
+              {% if forloop.counter|divisibleby:3 %}
             </div>
-            </div>
+            <div class="row">{% endif %} {% endfor %}</div>
           </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
-      </div>
-      <div class="row">{% endif %} {% endfor %}</div>
-    </div>
-  </div>
+</section>
   <!-- Page pagination-->
   {% if is_paginated %}
   <nav aria-label="Page navigation">

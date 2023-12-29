@@ -6,7 +6,7 @@
 {% if user.is_authenticated %}
 
 <div class="container">
-    <h1>Update post</h1>
+    <h1 class="pt-3">Update post</h1>
     <p>You can update your post below:</p>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
