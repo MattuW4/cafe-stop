@@ -28,7 +28,7 @@
                         {% if user.is_authenticated %}
                         <a id="browse-home-link" href="{% url 'browse' %}">Browse the cafes here...</a>
                         {% else %}
-                        Sign up for a free account  <a aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a> and join the community today!
+                        Sign up for a free account  <a id="register-link" type="button" aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a> and join the community today!
                         {% endif %}
                     </p>
                 </div>

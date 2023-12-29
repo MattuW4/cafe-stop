@@ -88,6 +88,16 @@ a:-webkit-any-link {
     color: whitesmoke;
 }
 
+#register-link {
+    text-decoration: underline;
+}
+
+#register-link:hover {
+    border-bottom: 3px black solid;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
 /* Post, browse and category image style */
 .image-border {
     border-style: dashed;
