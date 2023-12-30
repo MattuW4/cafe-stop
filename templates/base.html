@@ -56,8 +56,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 {% for category in category_list.all %}
-                                <a class="dropdown-item" href="/category/{{ category.name }}">{{ category.name|title
-                                    }}</a>
+                                <li><a class="dropdown-item" href="/category/{{ category.name }}">
+                                 {{ category.name|title}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>

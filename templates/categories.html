@@ -11,7 +11,7 @@
             <!-- For loop to display cards in grid -->
             {% for post in catalist.posts %}
             <div class="col-md-4">
-                <div class="card mb-3" box-shadow>
+                <div class="card mb-3">
                     <!-- Card body & detail -->
                     <div class="card-body">
                         <div class="image-container ">
@@ -24,7 +24,7 @@
                             {% endif %}
                         </div>
                         <div class="image-flash">
-                            <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
+                            <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                 <h2 class="card-title">{{ post.title }}</h2>
                             </a>
                             <p class="author">Posted by: {{ post.author }}</p>
