@@ -53,6 +53,10 @@ class UpdatePostForm(forms.ModelForm):
         fields = ['title', 'location', 'opening_time', 'closing_time',
                   'website', 'content', 'featured_image',]
 
+        widgets = {
+            'content': SummernoteWidget(),
+        }
+        
         labels = {
             'title': _('Cafe name:'),
             'location': _('Cafe location:'),

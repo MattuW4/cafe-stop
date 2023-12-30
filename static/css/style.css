@@ -83,6 +83,12 @@ a:-webkit-any-link {
     color: whitesmoke;
 }
 
+#dropdown-button:hover {
+    background-color: transparent;
+    outline: none;
+    color: black;
+}
+
 #logged-in {
     margin-bottom: 0rem !important;
 }
@@ -112,6 +118,13 @@ a:-webkit-any-link {
 .image-border {
     border-style: dashed;
     border-color: whitesmoke;
+}
+
+/* Sign up page */
+#sign-up-link:hover {
+    border-bottom: 3px black solid;
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 /* Cards */
@@ -144,12 +157,6 @@ a:-webkit-any-link {
 .like-button {
     background-color: transparent;
     outline: none;
-}
-
-#description-box {
-    background-color: whitesmoke;
-    border-radius: 10px;
-    max-height: 24rem;
 }
 
 .comments {
