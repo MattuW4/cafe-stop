@@ -7,7 +7,6 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
-
 class Category(models.Model):
     """
     Database model for Categories
@@ -21,7 +20,7 @@ class Category(models.Model):
     def __str__(self):
         """Returns the name of the category"""
         return self.name
-      
+
 
 class Post(models.Model):
     """
@@ -70,7 +69,6 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
-    
     class Meta:
         """Sets the order of posts by descending order"""
         ordering = ['-created_on']
@@ -112,6 +110,3 @@ class Comment(models.Model):
     def __str__(self):
         """Returns the comment with body and name"""
         return f"Comment {self.body} by {self.author}"
-
-    
-

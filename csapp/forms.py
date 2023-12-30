@@ -1,7 +1,11 @@
 from django import forms
 from cloudinary.forms import CloudinaryFileField
 from django_summernote.widgets import SummernoteWidget
-from django.forms import ( MultiWidget, MultiValueField, TextInput, Textarea, URLInput)
+from django.forms import (MultiWidget,
+                          MultiValueField,
+                          TextInput,
+                          Textarea,
+                          URLInput)
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Comment, Post
@@ -12,12 +16,11 @@ class AddPostForm(forms.ModelForm):
     Uses forms to enable logged in and authenticated users to create posts and
     add to browse.html.
     """
-    
+
     class Meta:
         model = Post
         fields = ['title', 'location', 'opening_time', 'closing_time',
-                  'website', 'category', 'content', 'featured_image',]
-        
+                  'website', 'category', 'content', 'featured_image', ]
 
         widgets = {
             'content': SummernoteWidget(),
@@ -25,7 +28,8 @@ class AddPostForm(forms.ModelForm):
                 'placeholder': 'Enter cafe name'
             }),
             'location': forms.TextInput(attrs={
-                'placeholder': 'Enter the location e.g. Malham Cove, Yorkshire Dales'
+                'placeholder':
+                    'Enter the location e.g. Malham Cove, Yorkshire Dales'
             }),
             'website': forms.URLInput(attrs={
                 'placeholder': 'Enter the links to their socials'
@@ -43,6 +47,7 @@ class AddPostForm(forms.ModelForm):
             'featured_image': _('Upload an image of the cafe:'),
         }
 
+
 class UpdatePostForm(forms.ModelForm):
     """
     Uses forms and UpdatePost view to enable a user to edit own blog post.
@@ -51,12 +56,12 @@ class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'location', 'opening_time', 'closing_time',
-                  'website', 'content', 'featured_image',]
+                  'website', 'content', 'featured_image', ]
 
         widgets = {
             'content': SummernoteWidget(),
         }
-        
+
         labels = {
             'title': _('Cafe name:'),
             'location': _('Cafe location:'),
@@ -74,21 +79,19 @@ class CommentForm(forms.ModelForm):
     Uses forms to enable users to add comments to blog posts within the post
     detail view if they are logged in and authenticated.
     """
-    
+
     class Meta:
         model = Comment
-        fields = ( 'body',)
+        fields = ('body',)
 
         widgets = {
             'body': forms.Textarea(attrs={
-                'placeholder': 'Get involved in the discussion - post a comment...'
+                'placeholder':
+                    'Get involved in the discussion - post a comment...'
             }),
         }
 
         labels = {
-            
+
             'body': _(''),
         }
-
-
-

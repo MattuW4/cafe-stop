@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&family=Roboto:wght@400&display=swap');
 
 /* Structural CSS */
 * {
@@ -156,7 +156,7 @@ a:-webkit-any-link {
     text-align: center;
 }
 
-#card-like {
+.card-like {
     color: rgb(247, 52, 52);
 }
 

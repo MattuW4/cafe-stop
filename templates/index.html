@@ -9,7 +9,9 @@
         <div class="row">
             <!-- Hero image -->
             <div class="col-md-7 text-center mt-4">
-                <img id="hero-image" src="https://res.cloudinary.com/deoxxigyw/image/upload/v1703886675/result_fkaizq.png" alt="Hero image logo of cyclist searching phone"/>
+                <img id="hero-image"
+                    src="https://res.cloudinary.com/deoxxigyw/image/upload/v1703886675/result_fkaizq.png"
+                    alt="Hero image logo of cyclist searching phone" />
             </div>
             <!-- Post details -->
             <div class="col-md-5 mt-4">
@@ -28,9 +30,13 @@
                     <p class="lead text-center">
                         <!-- If statement for authentication and alternating functionality -->
                         {% if user.is_authenticated %}
-                        Browse the cafes <strong><a id="register-link" type="button" aria-label="Link to browse page" href="{% url 'browse' %}"> here</a></strong> or why not try out the category search feature in the nav bar!
+                        Browse the cafes <strong><a id="register-link" type="button"
+                                aria-label="Link to browse page by clicking here" href="{% url 'browse' %}">
+                                here</a></strong> or why not try out the category search feature in the nav bar!
                         {% else %}
-                        Sign up for a free account  <strong><a id="register-link" type="button" aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a></strong> and join the community today!
+                        Sign up for a free account <strong><a id="register-link" type="button"
+                                aria-label="Link to register an account page by clicking here"
+                                href="{% url 'account_signup' %}">here</a></strong> and join the community today!
                         {% endif %}
                     </p>
                 </div>
@@ -43,45 +49,40 @@
         <!-- Display of 3 cards for the posts with highest ranked likes on the site -->
         <h2>Your favourite cafes at the moment:</h2>
         <div class="row">
-          <!-- Cafe catalogue column -->
-          <div class="col-12 mt-3 ">
-            <div class="row g-3">
-              {% for post in post_list %}
-              <div class="col-md-4">
-                <div class="card mb-3">
-                  <!-- Card body & detail -->
-                  <div class="card-body">
-                    <div class="image-container ">
-                      {% if "placeholder" in post.featured_image.url %}
-                      <img
-                        class="card-img-top image-border"
-                        alt="Placeholder image for post"
-                        src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"
-                      />
-                      {% else %}
-                      <img
-                        class="card-img-top image-border"
-                        alt="Featured image for post"
-                        src=" {{ post.featured_image.url }}"
-                      />
-                      {% endif %}
+            <!-- Cafe catalogue column -->
+            <div class="col-12 mt-3 ">
+                <div class="row g-3">
+                    {% for post in post_list %}
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <!-- Card body & detail -->
+                            <div class="card-body">
+                                <div class="image-container ">
+                                    {% if "placeholder" in post.featured_image.url %}
+                                    <img class="card-img-top image-border" alt="Placeholder image for post"
+                                        src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg" />
+                                    {% else %}
+                                    <img class="card-img-top image-border" alt="Featured image for post"
+                                        src=" {{ post.featured_image.url }}" />
+                                    {% endif %}
+                                </div>
+                                <div class="image-flash">
+                                    <hr />
+                                    <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
+                                        <h2 class="card-title">{{ post.title }}</h2>
+                                    </a>
+                                    <p>Location: {{ post.location }}</p>
+                                    <p id="card-info" class="card-text text-muted h6">
+                                        <i class="fa-solid fa-heart" id="card-like"></i> {{ post.number_of_likes }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="image-flash">
-                        <hr />
-                      <a href="{% url 'post_detail' post.slug %}" type="button" class="post-link">
-                      <h2 class="card-title">{{ post.title }}</h2></a>
-                      <p>Location: {{ post.location }}</p>
-                      <p id="card-info" class="card-text text-muted h6">
-                        <i class="fa-solid fa-heart" id="card-like"></i> {{ post.number_of_likes }} 
-                      </p>
-                  </div>
-                  </div>
+                    {% if forloop.counter|divisibleby:3 %}
                 </div>
-              </div>
-              {% if forloop.counter|divisibleby:3 %}
+                <div class="row">{% endif %} {% endfor %}</div>
             </div>
-            <div class="row">{% endif %} {% endfor %}</div>
-          </div>
         </div>
     </div>
 </section>

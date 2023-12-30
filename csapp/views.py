@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
-from django.http import HttpResponseRedirect 
+from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -14,8 +14,11 @@ from .forms import CommentForm, AddPostForm, UpdatePostForm
 class Index(generic.ListView):
     """Returns 3 posts ranked for top number of comments on site"""
     model = Post
-    queryset = Post.objects.filter(status=1).annotate(like_counts=Count('likes')).order_by('-like_counts')[:3]
     template_name = 'index.html'
+    queryset = Post.objects.filter(
+        status=1
+    ).annotate(num_likes=Count('likes')).order_by('-num_likes')[:3]
+    
 
 
 class PostList(generic.ListView):
@@ -28,7 +31,7 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'browse.html'
     paginate_by = 6
-    
+
 
 class PostLike(LoginRequiredMixin, View):
     """
@@ -42,9 +45,9 @@ class PostLike(LoginRequiredMixin, View):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-        
+
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
-    
+
     def form_valid(self, form):
         """Validate form after connecting form author to user"""
         form.instance.author = self.request.user
@@ -54,12 +57,11 @@ class PostLike(LoginRequiredMixin, View):
 class PostDetail(View):
     """
     View to post/get post detail to render on browse page,
-    category page and filtering posts by approved and 
+    category page and filtering posts by approved and
     ordered by most recent addition. Like or comment feature
     available. Features and use dependent upon user login status.
     """
-    
-    
+
     def get(self, request, slug, *args, **kwargs):
         """
         Get method to retrieve post detail and render. If statement
@@ -83,7 +85,6 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             }
         )
-    
 
     def post(self, request, slug, *args, **kwargs):
         """
@@ -110,7 +111,8 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            messages.success(request, 'Your comment has been submitted for approval!')
+            messages.success(request, 'Your comment'
+                             'has been submitted for approval!')
 
             return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
@@ -143,7 +145,10 @@ class AddPost(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
         return super().form_valid(form)
 
 
-class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, generic.UpdateView):
+class UpdatePost(LoginRequiredMixin,
+                 SuccessMessageMixin,
+                 UserPassesTestMixin,
+                 generic.UpdateView):
     """
     View to enable user to update blog post provided they are logged in
     and owner of post. Feedback success message on submission.
@@ -166,7 +171,10 @@ class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UserPassesTestMixin, g
         return False
 
 
-class DeletePost(LoginRequiredMixin, SuccessMessageMixin,  UserPassesTestMixin, generic.DeleteView):
+class DeletePost(LoginRequiredMixin,
+                 SuccessMessageMixin,
+                 UserPassesTestMixin,
+                 generic.DeleteView):
     """
     View to enable user to delete blog post provided they are logged
     in and owner of post. Feedback success message on deletion.
@@ -201,7 +209,7 @@ class SearchCategory(generic.ListView):
         content = {
             'cata': self.kwargs['category'],
             'posts': Post.objects.filter(category__name=self.kwargs
-            ['category']).filter(status='1')
+                                         ['category']).filter(status='1')
         }
         return content
 
@@ -210,11 +218,10 @@ class SearchCategory(generic.ListView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
 def category_list(request):
     category_list = Category.objects
     context = {
         'category_list': category_list,
     }
     return context
-
-

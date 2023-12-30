@@ -3,16 +3,18 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from .models import Post, Category, Comment
 
+
 class TestModels(TestCase, Client):
 
     def setUp(self):
         """Set up before each test"""
         self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password='password')        
+        self.user = User.objects.create_user(username='testuser',
+                                             password='password')
         self.client.login(username='testuser', password='password')
         self.category = Category.objects.create(name='Test Category')
         self.user.save()
-        
+
         """Post demo model"""
         self.post = Post.objects.create(
             title='Test title',
@@ -33,7 +35,7 @@ class TestModels(TestCase, Client):
             author=self.user,
             body='test comment'
         )
-        
+
     def test_post_model_str(self):
         """Test the __str__ method for post"""
         self.assertEqual(self.post.__str__(), self.post.title)
@@ -45,10 +47,9 @@ class TestModels(TestCase, Client):
             f'Comment {self.comment.body} by {self.comment.author}'
             )
 
-    
     def test_post_defaults(self):
         """Test default values"""
         self.assertTrue(self.post.opening_time == 0)
         self.assertTrue(self.post.closing_time == 0)
         self.assertTrue(self.post.status == 0)
-        self.assertTrue(self.comment.approved == False)
+        self.assertTrue(self.comment.approved==False)

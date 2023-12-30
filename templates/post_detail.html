@@ -1,8 +1,8 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load cloudinary %}
 {% load i18n %}
 {% load crispy_forms_tags %}
-{% block content %} 
+{% block content %}
 
 
 <!-- Post details section -->
@@ -12,9 +12,10 @@
             <!-- Post image -->
             <div class="col-md-7 text-center mt-4">
                 {% if "placeholder" in post.featured_image.url %}
-                <img class="image-border" alt="Placeholder image for post" src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg"/>
+                <img class="image-border" alt="Placeholder image for post"
+                    src="https://res.cloudinary.com/deoxxigyw/image/upload/v1702742414/alowvmw6lph1bcsmtp9d.jpg" />
                 {% else %}
-                <img class="image-border" alt="Featured image for post" src=" {{ post.featured_image.url }}"/>
+                <img class="image-border" alt="Featured image for post" src=" {{ post.featured_image.url }}" />
                 {% endif %}
             </div>
             <!-- Post details -->
@@ -27,30 +28,42 @@
                     <p>
                         {% if user.is_authenticated %}
                         <!-- Like feature that is interactive when logged in and authenticated -->
-                        <strong><form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
-                            {% csrf_token %}
-                            {% if liked %} 
-                            Rating: <button class="btn-lg like-button" id="like-btn-after" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> {{ post.number_of_likes }}
-                            {% else %}
-                            Rating: <button class="btn-lg like-button" id="like-btn-before" type="submit" name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> {{ post.number_of_likes }}
-                            {% endif %}
-                        </form>
+                        <strong>
+                            <form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                                Rating: <button class="btn-lg like-button" id="like-btn-after" type="submit"
+                                    name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> {{
+                                post.number_of_likes }}
+                                {% else %}
+                                Rating: <button class="btn-lg like-button" id="like-btn-before" type="submit"
+                                    name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> {{
+                                post.number_of_likes }}
+                                {% endif %}
+                            </form>
                         </strong>
                         {% else %}
-                        <span><strong>Rating: <i class="fas fa-heart" id="like-btn-after"></i> {{ post.number_of_likes }}</strong></span>
+                        <span><strong>Rating: <i class="fas fa-heart" id="like-btn-after"></i> {{ post.number_of_likes
+                                }}</strong></span>
                         {% endif %}
                     </p>
                     <p><strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
-                    <p><strong>Opens: {{ post.get_opening_time_display  }}</strong> | <strong>Closes: {{ post.get_closing_time_display  }}</strong></p>
-                    <p><strong>Category: <a aria-label="Link to the category page" id="category-link" type="button" href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
+                    <p><strong>Opens: {{ post.get_opening_time_display }}</strong> | <strong>Closes: {{
+                            post.get_closing_time_display }}</strong></p>
+                    <p><strong>Category: <a aria-label="Link to the category page" id="category-link" type="button"
+                                href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
                 </div>
                 <div>
                     <div class="d-flex gap-2">
                         {% if user.is_authenticated %}
                         <!-- Buttons to update or delete a post if owner and logged in -->
-                        <div class="container mt-2 d-flex flex-column col-12 gap-5 justify-content-md-between flex-md-row">
-                            <a aria-label="Link to update post page" href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
-                            <a aria-label="Link to delete post page" href="{% url 'delete' post.pk  %}" type="button" class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
+                        <div
+                            class="container mt-2 d-flex flex-column col-12 gap-5 justify-content-md-between flex-md-row">
+                            <a aria-label="Link to update post page" href="{% url 'update' post.slug %}" type="button"
+                                class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the
+                                post</a>
+                            <a aria-label="Link to delete post page" href="{% url 'delete' post.pk  %}" type="button"
+                                class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
                         </div>
                     </div>
                     {% endif %}
@@ -69,7 +82,7 @@
                 <h3> <strong>Cafe description:</strong></h3>
             </div>
             <div class="col-md-7">
-                <p>{{ post.content | safe }}</p>
+                <p><strong>{{ post.content | safe }}</strong></p>
             </div>
             <div class="col-md-5">
                 <!-- Comments-->
@@ -79,7 +92,7 @@
                     <h2><strong><i class="far fa-comments"></i> {{ total_comments }}</strong>Comment</h2>
                     {% else %}
                     <h2><strong><i class="far fa-comments"></i> {{ total_comments }}</strong>Comments</h2>
-                    {% endif %} 
+                    {% endif %}
                     {% endwith %}
                     <div>
                         {% if commented %}
@@ -93,19 +106,19 @@
                             {{ comment_form | crispy }} {% csrf_token %}
                             <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
                         </form>
-                        {% endif %} 
+                        {% endif %}
                         {% endif %}
                     </div>
                     <div class="comment-container overflow-auto">
                         {% for comment in comments %}
                         <div class="comments">
-                            <p  class="font-weight-bold">
+                            <p class="font-weight-bold">
                                 <span class="text-muted font-weight-normal">
                                     {{ comment.created_on }}
                                     {{ comment.author|title }} wrote:
                                 </span>
                             </p>
-                            {{ comment.body | linebreaks }}
+                            <strong>{{ comment.body | linebreaks }}</strong>
                         </div>
                         {% endfor %}
                     </div>
@@ -116,4 +129,3 @@
 </section>
 
 {% endblock content %}
-

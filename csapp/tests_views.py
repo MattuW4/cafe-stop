@@ -9,10 +9,11 @@ class TestViews(TestCase, Client):
     def setUp(self):
         """Set up before each test"""
         self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password='password')        
+        self.user = User.objects.create_user(username='testuser',
+                                             password='password')
         self.client.login(username='testuser', password='password')
         self.category = Category.objects.create(name='Test Category')
-        
+
         """Post demo model"""
         self.post = Post.objects.create(
             title='Test title',
@@ -41,8 +42,9 @@ class TestViews(TestCase, Client):
         self.update_post_url = reverse('update', args=[self.post.slug])
         self.delete_post_url = reverse('delete', args=[self.post.id])
         self.post_comment_url = reverse('post_detail', args=[self.post.slug])
-        self.category_view_url = reverse('category_search', args=[self.category.name])
-        
+        self.category_view_url = reverse('category_search',
+                                         args=[self.category.name])
+
     def test_home_GET(self):
         """Test to check home page is accessible when not logged in"""
         self.client.logout()
@@ -88,7 +90,8 @@ class TestViews(TestCase, Client):
         self.assertEquals(Post.objects.last().title, 'Test title')
 
     def test_post_no_data_POST(self):
-        """Test to check add post feature does not write to database with no data"""
+        """Test to check add post feature
+        does not write to database with no data"""
         response = self.client.post(self.add_post_url)
 
         self.assertEquals(response.status_code, 200)
@@ -129,10 +132,6 @@ class TestViews(TestCase, Client):
 
     def test_get_category_view(self):
         """ Test Category page retrieval and template usage """
-        response = self.client.get(self.category_view_url)            
+        response = self.client.get(self.category_view_url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'categories.html', 'base.html')
-      
-
-
-
