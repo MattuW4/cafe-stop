@@ -137,7 +137,7 @@ a:-webkit-any-link {
 /* Cards */
 .card-img-top {
     width: 100%;
-    height: 34vw;
+    height: 25vw;
     object-fit: cover;
 }
 
@@ -236,3 +236,9 @@ footer {
     color: whitesmoke;
 }
 
+/* Media queries */
+@media (max-width: 500px) {
+    .card-img-top {
+        height: 36vw;
+    }
+}

@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-3 col-sm-6">
             <!-- Button to return to oring page in case of wrong navigation -->
-            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-sec btn-lg m-1">Here by mistake? Go back</a>
+            <a aria-label="Link to go back to origin page if make a mistake" href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-sec btn-lg m-1">Here by mistake? Go back</a>
         </div>
     </form>
 </div>

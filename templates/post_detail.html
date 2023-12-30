@@ -42,15 +42,15 @@
                     </p>
                     <p><strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
                     <p><strong>Opens: {{ post.get_opening_time_display  }}</strong> | <strong>Closes: {{ post.get_closing_time_display  }}</strong></p>
-                    <p><strong>Category: <a id="category-link" type="button" href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
+                    <p><strong>Category: <a aria-label="Link to the category page" id="category-link" type="button" href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
                 </div>
                 <div>
                     <div class="d-flex gap-2">
                         {% if user.is_authenticated %}
                         <!-- Buttons to update or delete a post if owner and logged in -->
                         <div class="container mt-2 d-flex flex-column col-12 gap-5 justify-content-md-between flex-md-row">
-                            <a href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
-                            <a href="{% url 'delete' post.pk  %}" type="button" class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
+                            <a aria-label="Link to update post page" href="{% url 'update' post.slug %}" type="button" class="btn btn-secondary btn-lg"><i class="fa-solid fa-file-pen"></i> Update the post</a>
+                            <a aria-label="Link to delete post page" href="{% url 'delete' post.pk  %}" type="button" class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
                         </div>
                     </div>
                     {% endif %}

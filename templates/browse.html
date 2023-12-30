@@ -57,13 +57,13 @@
     <ul class="pagination justify-content-center">
       {% if page_obj.has_previous %}
       <li>
-        <a href="?page={{ page_obj.previous_page_number }}" class="page-link"
+        <a aria-label="Link to go back to previous image page" href="?page={{ page_obj.previous_page_number }}" class="page-link"
           >&laquo; BACK
         </a>
       </li>
       {% endif %} {% if page_obj.has_next %}
       <li>
-        <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+        <a aria-label="Link to move forward a page for more images" href="?page={{ page_obj.next_page_number }}" class="page-link">
           MORE &raquo;</a
         >
       </li>
