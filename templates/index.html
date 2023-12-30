@@ -28,9 +28,9 @@
                     <p class="lead text-center">
                         <!-- If statement for authentication and alternating functionality -->
                         {% if user.is_authenticated %}
-                        Browse the cafes <a id="register-link" type="button" aria-label="Link to browse page" href="{% url 'browse' %}"> here</a> or why not try out the category search feature in the nav bar!
+                        Browse the cafes <strong><a id="register-link" type="button" aria-label="Link to browse page" href="{% url 'browse' %}"> here</a></strong> or why not try out the category search feature in the nav bar!
                         {% else %}
-                        Sign up for a free account  <a id="register-link" type="button" aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a> and join the community today!
+                        Sign up for a free account  <strong><a id="register-link" type="button" aria-label="Link to register an account" href="{% url 'account_signup' %}">here</a></strong> and join the community today!
                         {% endif %}
                     </p>
                 </div>
