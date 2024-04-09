@@ -29,10 +29,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-mattuw4-cafe-stop-hnz25o9vte.us2.codeanyapp.com', 'cafe-stops-app.herokuapp.com', 'localhost', 'cafe-stops-app-1a89f942fe7e.herokuapp.com', '8000-mattuw4-cafe-stop-pjxls9nu4f.us2.codeanyapp.com',]
+    '8000-mattuw4-cafe-stop-hnz25o9vte.us2.codeanyapp.com',
+    'cafe-stops-app.herokuapp.com',
+    'localhost',
+    'cafe-stops-app-1a89f942fe7e.herokuapp.com',
+    '8000-mattuw4-cafe-stop-pjxls9nu4f.us2.codeanyapp.com',
+    '8000-mattuw4-cafestop-edra5ixwsrk.ws-eu110.gitpod.io',
+    ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
