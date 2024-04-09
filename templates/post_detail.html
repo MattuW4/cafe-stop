@@ -33,23 +33,23 @@
                                 {% csrf_token %}
                                 {% if liked %}
                                 Rating: <button class="btn-lg like-button" id="like-btn-after" type="submit"
-                                    name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> {{
-                                post.number_of_likes }}
+                                    name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> 
+                                    {{ post.number_of_likes }}
                                 {% else %}
                                 Rating: <button class="btn-lg like-button" id="like-btn-before" type="submit"
-                                    name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> {{
-                                post.number_of_likes }}
+                                    name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> 
+                                    {{ post.number_of_likes }}
                                 {% endif %}
                             </form>
                         </strong>
                         {% else %}
-                        <span><strong>Rating: <i class="fas fa-heart" id="like-btn-after"></i> {{ post.number_of_likes
-                                }}</strong></span>
+                        <span><strong>Rating: <i class="fas fa-heart" id="like-btn-after"></i> 
+                            {{ post.number_of_likes }}</strong></span>
                         {% endif %}
                     </p>
                     <p><strong>Location: {{ post.location | safe }} | Website: {{ post.website | safe }}</strong></p>
-                    <p><strong>Opens: {{ post.get_opening_time_display }}</strong> | <strong>Closes: {{
-                            post.get_closing_time_display }}</strong></p>
+                    <p><strong>Opens: {{ post.get_opening_time_display }}</strong> | <strong>Closes: 
+                        {{ post.get_closing_time_display }}</strong></p>
                     <p><strong>Category: <a aria-label="Link to the category page" id="category-link" type="button"
                                 href="{% url 'category_search' post.category %}">{{ post.category }}</a></strong> </p>
                 </div>
