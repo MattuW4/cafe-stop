@@ -196,6 +196,10 @@ a:-webkit-any-link {
     color: rgb(247, 52, 52);
 }
 
+#logged-out-like-btn{
+    color:black; 
+}
+
 #like-btn-after:hover {
     transform: scale(1.6);
 }
