@@ -192,7 +192,7 @@ a:-webkit-any-link {
     transform: scale(1.6);
 }
 
-#like-btn-after {
+.like-btn-after {
     color: rgb(247, 52, 52);
 }
 
