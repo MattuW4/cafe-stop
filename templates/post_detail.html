@@ -56,6 +56,7 @@
                 <div>
                     <div class="d-flex gap-2">
                         {% if user.is_authenticated %}
+                        {% if request.user == post.author %}
                         <!-- Buttons to update or delete a post if owner and logged in -->
                         <div
                             class="container mt-2 d-flex flex-column col-12 gap-5 justify-content-md-between flex-md-row">
@@ -66,6 +67,7 @@
                                 class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
                         </div>
                     </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
