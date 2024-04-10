@@ -24,6 +24,6 @@ urlpatterns = [
 ]
 
 handler500 = 'cafestops.views.error_500'
-handler405= 'cafestops.views.error_405'
+handler405 = 'cafestops.views.error_405'
 handler404 = 'cafestops.views.error_404'
-handler403= 'cafestops.views.error_403'
+handler403 = 'cafestops.views.error_403'

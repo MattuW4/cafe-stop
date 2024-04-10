@@ -132,8 +132,6 @@ a:-webkit-any-link {
     color: #255957;
 }
 
-
-
 /* Cards */
 .card-img-top {
     width: 100%;
@@ -217,6 +215,11 @@ a:-webkit-any-link {
     margin-top: 0.8rem;
 }
 
+/* Return button */
+#btn-return{
+    color:black;
+}
+
 /* Footer */
 
 footer {
@@ -242,12 +245,13 @@ footer {
     color: black;
 }
 
-#foot-link-color {
+#foot-media-link {
     color: #255957;
+    border-bottom: 3px black solid;
 }
 
-.footer-media-link:hover {
-    border-bottom: 3px black solid;
+#footer-media-link:hover {
+    border-bottom: 3px whitesmoke solid;
     color: whitesmoke;
 }
 

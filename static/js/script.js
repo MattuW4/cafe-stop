@@ -1,10 +1,6 @@
-document.addEventListener('DOMContentLoaded', closeAlerts);
-
-// Timer for dismissal of popup messages
-function closeAlerts () {
+document.addEventListener("DOMContentLoaded", () => {
+    // Timer for dismissal of popup messages
     setTimeout(function () {
-        let messages = document.getElementById("msg");
-        let alert = new bootstrap.Alert(messages);
-        alert.close();
+      $("#msg").alert("close");
     }, 2500);
-}
+  });

@@ -23,7 +23,7 @@
                 {% endif %}
                 <button class="btn btn-danger right" type="submit" aria-label="Button to log out">{% trans 'Sign Out' %}</button>
                 <div class="col-md-3 col-sm-6">
-                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-sec m-1">Or click here to stay with us and return to Cafe Stops.</a>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-warning btn-sec m-1" id='btn-return'>Or click here to stay with us and return to Cafe Stops.</a>
                 </div>
             </form>
         </div>
