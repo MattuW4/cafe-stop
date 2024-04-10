@@ -4,9 +4,8 @@
 {% load crispy_forms_tags %}
 
 
-
-<!-- Post details section -->
 <section>
+    <!-- Post details section -->
     <div class="container">
         <div class="row">
             <!-- Post image -->
@@ -53,29 +52,29 @@
                         {% endif %}
                     </div>
                     <div>
-                    <p>
-                        <strong>
-                            Location: {{ post.location | safe }} | Website: {{ post.website | safe }}
-                        </strong>
-                    </p>
-                    <p>
-                        <strong>
-                            Opens: {{ post.get_opening_time_display }}
-                        </strong>
-                    </p> 
-                    <p>
-                        <strong>
-                            Closes: 
-                            {{ post.get_closing_time_display }}
-                        </strong>
-                    </p>
-                    <p>
-                        <strong>
-                            Category: <a aria-label="Link to the category page" id="category-link" role="button"
-                                href="{% url 'category_search' post.category %}">{{ post.category }}</a>
-                        </strong> 
-                    </p>
-                </div>
+                        <p>
+                            <strong>
+                                Location: {{ post.location | safe }} | Website: {{ post.website | safe }}
+                            </strong>
+                        </p>
+                        <p>
+                            <strong>
+                                Opens: {{ post.get_opening_time_display }}
+                            </strong>
+                        </p> 
+                        <p>
+                            <strong>
+                                Closes: 
+                                {{ post.get_closing_time_display }}
+                            </strong>
+                        </p>
+                        <p>
+                            <strong>
+                                Category: <a aria-label="Link to the category page" id="category-link" role="button"
+                                    href="{% url 'category_search' post.category %}">{{ post.category }}</a>
+                            </strong> 
+                        </p>
+                    </div>
                 </div>
                 <div>
                     <div class="d-flex gap-2">
@@ -90,9 +89,10 @@
                             <a aria-label="Link to delete post page" href="{% url 'delete' post.pk  %}" type="button"
                                 class="btn btn-danger btn-lg"><i class="fas fa-trash"></i> Delete the post</a>
                         </div>
+                        {% endif %}
+                        {% endif %}
                     </div>
-                        {% endif %}
-                        {% endif %}
+                        
                 </div>
             </div>
         </div>
