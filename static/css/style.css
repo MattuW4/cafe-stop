@@ -202,6 +202,21 @@ a:-webkit-any-link {
     transform: scale(1.6);
 }
 
+#description-bground{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+#btn-detail{
+    margin: 0.8rem;
+}
+
+/* Post add page */
+#btn-add{
+    margin-top: 0.8rem;
+}
+
 /* Footer */
 
 footer {
