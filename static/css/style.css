@@ -106,7 +106,7 @@ a:-webkit-any-link {
 #register-link {
     text-decoration: underline;
     text-decoration-thickness: 3px;
-    color: #255957;
+    color: black;
 }
 
 #register-link:hover {
@@ -243,20 +243,17 @@ footer {
     color: whitesmoke;
 }
 
-.footer-media-link {
+#footer-media-link {
     cursor: pointer;
     text-decoration: none;
     color: black;
-}
-
-#foot-media-link {
-    color: #255957;
     border-bottom: 3px black solid;
 }
 
 #footer-media-link:hover {
-    border-bottom: 3px whitesmoke solid;
+    border-bottom: 3px black solid;
     color: whitesmoke;
+    text-decoration: none;
 }
 
 /* Media queries */
