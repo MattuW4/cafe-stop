@@ -13,8 +13,8 @@ Cafes stops is an online app designed to connect people interested in cycling an
 3. [Design](#3-design)
 4. [Features](#4-features)
 5. [Technologies Used](#5-technologies-used)
-6. [Local Development and Deployment](#6-local-development-and-deployment)
-7. [Testing](#7-testing)
+6. [Testing](#6-testing)
+7. [Local Development and Deployment](#7-local-development-and-deployment)
 8. [Credits](#8-credits)
 
 ## 1. User Experience (UX)
@@ -358,119 +358,10 @@ Cloudinary cloud services were used to store static files.
 - [JSHint](https://jshint.com/)
 - [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
 - [Coverage](https://coverage.readthedocs.io/)
+- [Wave](https://wave.webaim.org/)
 
-## 6. Local Development and Deployment
 
-### Local Development
-
-#### Forking the Repository
-
-- Log in to GitHub.
-- Go to the repository for this project (<https://github.com/MattuW4/cafe-stop>).
-- In the top-right corner of the page, click "Fork".
-- Under "Owner", select an owner for the repository from the dropdown menu.
-- Optionally, in the "Description" field, type a description of your fork.
-- To copy the main branch only, select the "Copy the main branch only" check box. If you do not select this option, all branches will be copied into the new fork.
-- Click "Create fork"
-
-#### Cloning Your Forked Repository
-
-- Log-in to GitHub.com, navigate to your fork of the repository.
-- Above the list of files, click Code.
-- Copy the URL for the repository.
-  - To clone the repository using HTTPS, under "Clone with HTTPS", click the "Copy" icon.
-  - To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click the "Copy" icon.
-  - To clone a repository using GitHub CLI, click Use GitHub CLI, then click the "Copy" icon.
-- Open Git Bash
-- Change the current working directory to the location where you want the cloned directory.
-- Type git clone, and then paste the URL you copied earlier.
-- Press Enter. Your local clone will be created.
-
-For more details about forking and cloning a repository, please refer to [GitHub documentation](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
-
-#### Install Dependencies
-
-Use the `pip install -r requirements.txt` command to install all of the Python modules and packages listed in your requirements.txt file.
-
-#### Create your env.py
-
-- In your project workspace, create a file called env.py and make sure this file is included in the .gitignore file.
-- Add the following code:
-
-```python
-import os
-
-os.environ["DATABASE_URL"]='<copiedURL>'
-os.environ['SECRET_KEY'] = '<ADD YOUR SECRET KEY HERE>'
-os.environ['CLOUDINARY_URL'] = '<API ENVIRONEMENT VARIABLE>'
-
-```
-
-- Replace `<ADD YOUR SECRET KEY HERE>` in the SECRET_KEY environment variable with your own secret key.
-- Save the file.
-
-#### Create a Database
-
-- Create an account and log in with ElephantSQL.com.
-- From the dashboard click “Create New Instance”.
-- Set up your plan
-  - Give your plan a Name
-  - Select a plan tier
-  - You can leave the Tags field blank
-- Select “Select Region”
-- Select a data center near you
-- Then click “Review”
-- Check your details are correct and then click “Create instance”
-- Return to the ElephantSQL dashboard and click on the database instance name for this project
-- In the URL section, click the copy icon to copy the database URL
-- In your env.py file replace `<copiedURL>` in the DATABASE_URL environment variable with the copied URL.
-- Save the file.
-
-#### Set Up Cloudinary
-
-- Create an account and log in with Cloudinary.com.
-- In the dashboard copy your API Environment variable.
-- In your env.py file replace `<API ENVIRONEMENT VARIABLE>` in the CLOUDINARY_URL environment variable with the copied API Environment variable.
-- Save the file.
-
-### Deployment
-
-- The requirements.txt file in the project was updated to include details on the project dependencies. Steps to do this are :
-  - Enter the following command at the terminal prompt : "pip3 freeze > requirements.txt"
-  - Commit changes to requirements.txt and push to GitHub.
-- In `setting.py`, add Heroku Hostname to ALLOWED_HOSTS.
-
-```python
-ALLOWED_HOSTS = ["PROJECT_NAME.herokuapp.com", "YOUR_HOSTNAME"]
-```
-
-- Make sure a file named Procfile exists on the top level directory which contains the following code:
-
-```python
-web: gunicorn PROJECT_NAME.wsgi
-```
-
-- Commit changes and push to GitHub.
-- Log in to Heroku, create an account if necessary.
-- From the Heroku dashboard, click "Create new app". For a new account a button will be displayed on screen, if you already have one or more apps created a link to this function is located in the "New" dropdown menu at the top right of the screen.
-- On the Create New App page, enter a unique name for the application and select region. Then click Create app.
-- Select the "settings" tab and click the "Reveal Config Vars" button.
-- Enter the following values into the specified fields and click "Add":
-
-    | KEY | VALUE |
-    |-----|-------|
-    | CLOUDINARY_URL | paste the API Environment variable copied from the Cloudinary dashboard |
-    | DATABASE_URL | paste the URL copied from ElephantSQL dashboard |
-    | SECRET_KEY | paste your secret key |
-
-- Select the "Deploy" tab.
-- Select GitHub as the Deployment Method and click "Connect to GitHub".
-- Enter the name of your GitHub repository in the search bar and click "Search".
-- Click the "Connect" button to link your GitHub repository with your Heroku app.
-- Scroll down the page and choose to either Automatically Deploy each time changes are pushed to GitHub, or Manually deploy.
-- The application can be run from the Application Configuration page by clicking on the Open App button.
-
-## 7. Testing
+## 6. Testing
 
 [Chrome DevTools](https://developer.chrome.com/docs/devtools/) was frequently utilised.
 
@@ -587,13 +478,22 @@ This was used to test the script.js file. Undefined variables was turned off to 
 
 ![JSHint](documentation/testing/jshint.png)
 
-### Lighthouse Auditing
+### Lighthouse & Wave Auditing
 
-Lighthouse audit reports were generated through Chrome DevTools to test the performance, accessibility, best practices and SEO of the website during the development of the website.
+Lighthouse audit reports were generated through Chrome DevTools to test the performance, accessibility, best practices and SEO of the website during the development of the website. [Wave](https://wave.webaim.org/) was also used to test the accessibility and functionality of the site.
 
 Lighthouse audit report is as follows:
 
-![CI Python Linter](documentation/testing/lighthouse.png)
+![Lighthouse](documentation/testing/lighthouse.png)
+
+Lighthouse performance demonstrated scope for improvement in the below domains. Fixes were identified but not implemented due to time constraints but included setting a default file save type on the backend model as well as a default size. The issues identified did not impact performance during testing.
+
+![Lighthouse perforamance](documentation/testing/lighthouse-perf.png)
+
+Lighthouse best practice identified two criteria that lowered the score as shown below. As discussed in the bug section, it is understood that the third party issue flagged relates to a practice that chrome is introducing with the issues logged in the 'Issues' section of the console relating to these cookies. A fix was not found or implemented but it is anticipated that the best practices are otherwise 100% outside of these known issues.
+
+![Lighthouse best practice](documentation/testing/lighthouse-bp.png)
+
 
 ### Bugs Encountered
 
@@ -620,7 +520,118 @@ Solution: the pre-fixed categories were hyphenated in order to remove white spac
 
 3. It was noted that in the dev tools test that the blocked third party cookies were identified as an issue. It is understood that this is something being introduced for chrome recently without a solution at the time of project completion.
 
-![Cookie error](documentation/testing/cookie-block.png)
+![Cookie error](documentation/testing/cookie-block.jpg)
+
+## 7. Local Development and Deployment
+
+### Local Development
+
+#### Forking the Repository
+
+- Log in to GitHub.
+- Go to the repository for this project (<https://github.com/MattuW4/cafe-stop>).
+- In the top-right corner of the page, click "Fork".
+- Under "Owner", select an owner for the repository from the dropdown menu.
+- Optionally, in the "Description" field, type a description of your fork.
+- To copy the main branch only, select the "Copy the main branch only" check box. If you do not select this option, all branches will be copied into the new fork.
+- Click "Create fork"
+
+#### Cloning Your Forked Repository
+
+- Log-in to GitHub.com, navigate to your fork of the repository.
+- Above the list of files, click Code.
+- Copy the URL for the repository.
+  - To clone the repository using HTTPS, under "Clone with HTTPS", click the "Copy" icon.
+  - To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click the "Copy" icon.
+  - To clone a repository using GitHub CLI, click Use GitHub CLI, then click the "Copy" icon.
+- Open Git Bash
+- Change the current working directory to the location where you want the cloned directory.
+- Type git clone, and then paste the URL you copied earlier.
+- Press Enter. Your local clone will be created.
+
+For more details about forking and cloning a repository, please refer to [GitHub documentation](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+
+#### Install Dependencies
+
+Use the `pip install -r requirements.txt` command to install all of the Python modules and packages listed in your requirements.txt file.
+
+#### Create your env.py
+
+- In your project workspace, create a file called env.py and make sure this file is included in the .gitignore file.
+- Add the following code:
+
+```python
+import os
+
+os.environ["DATABASE_URL"]='<copiedURL>'
+os.environ['SECRET_KEY'] = '<ADD YOUR SECRET KEY HERE>'
+os.environ['CLOUDINARY_URL'] = '<API ENVIRONEMENT VARIABLE>'
+
+```
+
+- Replace `<ADD YOUR SECRET KEY HERE>` in the SECRET_KEY environment variable with your own secret key.
+- Save the file.
+
+#### Create a Database
+
+- Create an account and log in with ElephantSQL.com.
+- From the dashboard click “Create New Instance”.
+- Set up your plan
+  - Give your plan a Name
+  - Select a plan tier
+  - You can leave the Tags field blank
+- Select “Select Region”
+- Select a data center near you
+- Then click “Review”
+- Check your details are correct and then click “Create instance”
+- Return to the ElephantSQL dashboard and click on the database instance name for this project
+- In the URL section, click the copy icon to copy the database URL
+- In your env.py file replace `<copiedURL>` in the DATABASE_URL environment variable with the copied URL.
+- Save the file.
+
+#### Set Up Cloudinary
+
+- Create an account and log in with Cloudinary.com.
+- In the dashboard copy your API Environment variable.
+- In your env.py file replace `<API ENVIRONEMENT VARIABLE>` in the CLOUDINARY_URL environment variable with the copied API Environment variable.
+- Save the file.
+
+### Deployment
+
+- The requirements.txt file in the project was updated to include details on the project dependencies. Steps to do this are :
+  - Enter the following command at the terminal prompt : "pip3 freeze > requirements.txt"
+  - Commit changes to requirements.txt and push to GitHub.
+- In `setting.py`, add Heroku Hostname to ALLOWED_HOSTS.
+
+```python
+ALLOWED_HOSTS = ["PROJECT_NAME.herokuapp.com", "YOUR_HOSTNAME"]
+```
+
+- Make sure a file named Procfile exists on the top level directory which contains the following code:
+
+```python
+web: gunicorn PROJECT_NAME.wsgi
+```
+
+- Commit changes and push to GitHub.
+- Log in to Heroku, create an account if necessary.
+- From the Heroku dashboard, click "Create new app". For a new account a button will be displayed on screen, if you already have one or more apps created a link to this function is located in the "New" dropdown menu at the top right of the screen.
+- On the Create New App page, enter a unique name for the application and select region. Then click Create app.
+- Select the "settings" tab and click the "Reveal Config Vars" button.
+- Enter the following values into the specified fields and click "Add":
+
+    | KEY | VALUE |
+    |-----|-------|
+    | CLOUDINARY_URL | paste the API Environment variable copied from the Cloudinary dashboard |
+    | DATABASE_URL | paste the URL copied from ElephantSQL dashboard |
+    | SECRET_KEY | paste your secret key |
+
+- Select the "Deploy" tab.
+- Select GitHub as the Deployment Method and click "Connect to GitHub".
+- Enter the name of your GitHub repository in the search bar and click "Search".
+- Click the "Connect" button to link your GitHub repository with your Heroku app.
+- Scroll down the page and choose to either Automatically Deploy each time changes are pushed to GitHub, or Manually deploy.
+- The application can be run from the Application Configuration page by clicking on the Open App button.
 
 ## 8. Credits
 

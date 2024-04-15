@@ -172,12 +172,14 @@ a:-webkit-any-link {
 #category-link {
     text-decoration: underline;
     text-decoration-thickness: 3px;
-    color: #255957;
+    color: #000;
 }
 
 #category-link:hover {
     text-decoration: none;
-    border-bottom: 3px black solid;
+    background-color: whitesmoke;
+    border-bottom: 3px #255957 solid;
+    border-radius: 5px;
 }
 
 #content-spacing {

@@ -30,13 +30,13 @@
                         <form action="{% url 'like_post' post.slug %}" class="d-inline" method="POST">
                             {% csrf_token %}
                             {% if liked %}
-                            <strong>Rating: <button class="btn-lg like-button like-btn-after" type="submit"
+                            <strong>Rating: <button aria-label="Like button liked" class="btn-lg like-button like-btn-after" type="submit"
                                 name="blogpost_id" value="{{ post.slug }}"><i class="fas fa-heart"></i></button> 
                                 {{ post.number_of_likes }}
                             </strong>
                             {% else %}
                             <strong>
-                            Rating: <button class="btn-lg like-button" id="like-btn-before" type="submit"
+                            Rating: <button aria-label="Like button unliked" class="btn-lg like-button" id="like-btn-before" type="submit"
                                 name="blogpost_id" value="{{ post.slug }}"><i class="far fa-heart"></i></button> 
                                 {{ post.number_of_likes }}
                             </strong>
@@ -105,9 +105,9 @@
         <div class="row mt-3">
             <div class="col-md-7">
                 <!-- Description -->
-                <h3>
+                <h2>
                     Cafe description:
-                </h3>
+                </h2>
             </div>
             <div id="description-bground" class="col-md-7">
                 <p>{{ post.content | safe }}</p>
@@ -143,7 +143,7 @@
                         <p>
                             Posting as: {{ user.username|title }}
                         </p>
-                        <form method="post" style="margin-top: 1.3em">
+                        <form aria-label="Comment form" method="post" style="margin-top: 1.3em">
                             {{ comment_form | crispy }} {% csrf_token %}
                             <button type="submit" id="btn-detail" class="btn btn-secondary btn-lg">
                                 Submit
