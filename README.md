@@ -4,7 +4,7 @@
 
 Cafes stops is an online app designed to connect people interested in cycling and café culture. All users have access to browse and view published posts but users must be registered to interact with content e.g. make posts, like posts or comment. Registered users can submit posts to the site via a submission form and update or delete them from the site. Each post is viewable on the site following authorisation by admin. Posts have categories that link them together which users can search through.
 
-[The deployed app can be found here]( https://cafe-stops-app-1a89f942fe7e.herokuapp.com/)
+[The deployed app can be found here](https://cafe-stops-app-1a89f942fe7e.herokuapp.com/)
 
 ## Contents
 
