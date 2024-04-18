@@ -94,7 +94,7 @@ To manage the development process GitHub Issues and Projects including a Kanban 
 
 The below diagram shows the consideration for how a user would navigate through the prospective website features that informed and underpinned the development and implementation during the project.
 
-![User flow](design/features/user-flow.png)
+![User flow](documentation/design/user-flow.png)
 
 ### Wireframes
 
@@ -110,9 +110,8 @@ In the initial stages of scoping wireframes were used to conceptualise and aid d
 
 ![colour palette](documentation/design/cooler.png)
 
-Cooler was utilised to select a colour scheme.
+[Coolors](https://coolors.co/) was utilised to select a colour scheme.
 
-[Coolors](https://coolors.co/).
 
 ### Typography
 
@@ -213,11 +212,14 @@ If a user is authenticated as logged in and a post owner, then the feature to de
 ### User Authentication, register, log in & out 
 
 As mentioned in the feature sections there are certain elements available to a user if they are authenticated as logged in or out, or whether they own a post or not. 
+
 #### Register
 ![Register](documentation/features/register.png)
+
 #### Log in
 ![Log in](documentation/features/sign-in.png)
-####Log out
+
+#### Log out
 ![Log out](documentation/features/log-out.png)
 
 ### Field errors and update messages
@@ -254,7 +256,7 @@ The site is designed with mobile first in mind with one significant feature bein
 
 The site uses a relational database to store and manage data. The relational database management system software used for this project is [PostgreSQL](https://www.postgresql.org/). This is hosted on the cloud service [ElephantSQL](https://www.elephantsql.com/).
 
-#### Post Model
+### Post Model
 
 Title - a CharField with a maximum of 50 characters that must be unique.
 
@@ -284,7 +286,7 @@ Likes - a ManyToManyField linking user models to posts that user has liked.
 
 Category – a ForeignKey linked to the category model selected by a user.
 
-#### Comment Model
+### Comment Model
 
 Author - a ForeignKey linking the author to the user model of the user who created it.
  
@@ -293,11 +295,11 @@ Created_on - a DateTimeField that autopopulates with the current date and time w
 
  Approved – a BooleanField.
 
-#### Category Model
+### Category Model
 
 Name – a Character Field with max length of 30.
 
-#### Entity Relationship Diagram
+### Entity Relationship Diagram
 
 The Entity Relationship Diagram (ERD) below shows the database structure and relationships between tables.
 
@@ -408,7 +410,7 @@ Cloudinary cloud services were used to store static files.
 ||||
 
 
-#### Unit Tests and Coverage
+### Unit Tests and Coverage
 
 The automated tests were written using Django's built-in testing framework which use Python's unittest module. By default Django uses SQLite for the app database, this was used for development purposes and performing automated tests. The test files can be found in the app directory.
 
@@ -446,7 +448,7 @@ The app was tested on the following devices, using Chrome DevTools at different 
 
 The [W3C Markup Validation Service](https://validator.w3.org/) was used to validate the HTML files.
 
-All possible validation issues flagged in the validator were resolved that included improper syntax wrapping using a strong tag; form inside a <p> tag; and isolated closing tags for structural HTML elements. Persisting validation issues remained on the post card detail view and the create/edit post due to the unresolved bugs referenced in the later section (potentially caused by Summernote). 
+All possible validation issues flagged in the validator were resolved that included improper syntax wrapping using a strong tag; form inside a paragraph tag; and isolated closing tags for structural HTML elements. Persisting validation issues remained on the post card detail view and the create/edit post due to the unresolved bugs referenced in the later section (potentially caused by Summernote). 
 
 ## W3C CSS Validator Testing
 
